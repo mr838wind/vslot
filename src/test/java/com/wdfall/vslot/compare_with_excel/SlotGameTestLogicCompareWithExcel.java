@@ -27,7 +27,7 @@ public abstract class SlotGameTestLogicCompareWithExcel {
 	public static final int SPIN_COUNT_PER_GAME_MILLION_1000 = 1000*1000*1000;
 	public static final int SPIN_COUNT_PER_GAME_MILLION_1000_10 = 10*1000*1000*1000;
 	//
-	public static final int VALUE_MAX_DIFFERENCE = 1;
+	public static final double VALUE_MAX_DIFFERENCE = 1;
 	/*
 	 * 
 	 */
