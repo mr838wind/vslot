@@ -22,7 +22,11 @@ import lombok.extern.slf4j.Slf4j;
 public class JsonSettingParamGeneratorTest {
 	private static File PARAM_FILE = FileUtil.getFileOnClasspath("slot_game_setting_param.json");
 
-	@Test
+	public static void main(String[] args) {
+		new JsonSettingParamGeneratorTest().writeSettingParamJson();
+		new JsonSettingParamGeneratorTest().readSettingParamJson(); 
+	}
+	
 	public void writeSettingParamJson() {
 		SlotGameSettingParam param = new SlotGameSettingParam();
 		param.setReelCount(3);
@@ -98,7 +102,6 @@ public class JsonSettingParamGeneratorTest {
 		FileUtil.writeToFile(PARAM_FILE, json);
 	}
 	
-	@Test
 	public void readSettingParamJson() {
 		String json = FileUtil.readFromFile(PARAM_FILE);
 		SlotGameSettingParam param = JsonBuilder.jsonToObject(json, SlotGameSettingParam.class);
