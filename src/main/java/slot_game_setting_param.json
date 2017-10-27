@@ -3,22 +3,40 @@
   "reelCountArray" : [ 3, 3, 3 ],
   "betPerLine" : 1,
   "normalSymbolList" : [ "N1", "N2", "N3" ],
-  "otherSymbolList" : [ ],
+  "otherSymbolList" : [ "WD", "SS" ],
   "reelCompositionParamList" : [ {
-    "N1" : 10,
-    "N2" : 10,
+    "SS" : 1,
+    "WD" : 1,
+    "N1" : 8,
+    "N2" : 12,
     "N3" : 10
   }, {
+  	"SS" : 1,
+    "WD" : 1,
     "N1" : 10,
     "N2" : 10,
     "N3" : 10
   },{
-    "N1" : 10,
-    "N2" : 10,
-    "N3" : 10
+    "SS" : 1,
+    "WD" : 1,
+    "N1" : 14,
+    "N2" : 8,
+    "N3" : 8
   }],
   "linePatternList" : [ [ 1, 1, 1] ],
   "payoutTableRuleParamList" : [{
+    "symbol" : "SS",
+    "symbolType" : "S",
+    "rule" : {
+      "3" : 200
+    }
+  }, {
+    "symbol" : "WD",
+    "symbolType" : "W",
+    "rule" : {
+      "3" : 100
+    }
+  }, {
     "symbol" : "N1",
     "symbolType" : "N",
     "rule" : {
