@@ -14,6 +14,7 @@ public class SlotGameTestLogicCompareWithExcel {
 	private static final double EXPECTED_WILD = 156.5909;
 	private static final double EXPECTED_SCATTER = 158.8439;
 	private static final double EXPECTED_3V4 = 504.2076;
+	private static final double EXPECTED_SYMBOL_NUMBER = 145.0805;
 	/*
 	 * 10*1000*1000 일때 1% 차이안에 있음. ---- (실행속도 좀 늦음)
 	 * 1000*1000 도 1~2%내에 있음.---- (실행속도 빠름)
@@ -35,6 +36,8 @@ public class SlotGameTestLogicCompareWithExcel {
 	private static final String JSON_FILE_PATH_SCATTER = "param/slot_game_setting_param_10_3_add_scatter.json";
 	// 경우의 수 : 1,048,576
 	private static final String JSON_FILE_PATH_3V4 = "param/slot_game_setting_param_11_3v4.json";
+	// 경우의 수 : 32768
+	private static final String JSON_FILE_PATH_SYMBOL_NUMBER = "param/slot_game_setting_param_10_4_symbol_number.json";
 	
 	@Before
 	public void setUp() {
@@ -93,19 +96,29 @@ public class SlotGameTestLogicCompareWithExcel {
 	 */
 	@Test
 	public void testIntegrationSimple() throws Exception {
-		testSlot(JSON_FILE_PATH_SIMPLE, EXPECTED_SIMPLE, THREAD_COUNT_ONE, SPIN_COUNT_PER_GAME_MILLION);
+		testSlot(JSON_FILE_PATH_SIMPLE, EXPECTED_SIMPLE, THREAD_COUNT_ONE, SPIN_COUNT_PER_GAME_MILLION_10);
 	}
 	
 	@Test
 	public void testIntegrationWild() throws Exception {
-		testSlot(JSON_FILE_PATH_WILD, EXPECTED_WILD, THREAD_COUNT_ONE, SPIN_COUNT_PER_GAME_MILLION);
+		testSlot(JSON_FILE_PATH_WILD, EXPECTED_WILD, THREAD_COUNT_ONE, SPIN_COUNT_PER_GAME_MILLION_10);
 	}
 	
 	@Test
 	public void testIntegrationScatter() throws Exception {
 		// 경우의 수: 32,768
-		testSlot(JSON_FILE_PATH_SCATTER, EXPECTED_SCATTER, THREAD_COUNT_ONE, SPIN_COUNT_PER_GAME_MILLION);
+		testSlot(JSON_FILE_PATH_SCATTER, EXPECTED_SCATTER, THREAD_COUNT_ONE, SPIN_COUNT_PER_GAME_MILLION_10);
 	}
+	
+	/*
+	 * 
+	 */
+	@Test
+	public void testIntegrationSymbolNumber() throws Exception {
+		// 경우의 수: 32,768
+		testSlot(JSON_FILE_PATH_SYMBOL_NUMBER, EXPECTED_SYMBOL_NUMBER, THREAD_COUNT_ONE, SPIN_COUNT_PER_GAME_MILLION_10);
+	}
+	
 	
 	/*
 	 * 3*4
@@ -115,6 +128,8 @@ public class SlotGameTestLogicCompareWithExcel {
 		// 경우의 수 : 1,048,576
 		testSlot(JSON_FILE_PATH_3V4, EXPECTED_3V4, THREAD_COUNT_ONE, SPIN_COUNT_PER_GAME_MILLION_100);
 	}
+	
+	
 	
 	
 	/*
