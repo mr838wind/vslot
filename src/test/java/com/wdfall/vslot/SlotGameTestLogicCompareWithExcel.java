@@ -48,6 +48,10 @@ public class SlotGameTestLogicCompareWithExcel {
 	 * log4j level ---> INFO
 	 */
 	
+	
+	
+	/* =========================  thread test ============================= */
+	
 	/**
 	 * 1 thread is the fast.
 	 * <<<< thread test >>>>
@@ -68,6 +72,10 @@ public class SlotGameTestLogicCompareWithExcel {
 		testSlot(JSON_FILE_PATH_SCATTER, EXPECTED_SCATTER, 10, SPIN_COUNT_PER_GAME_MILLION_10 / 10);
 	}
 	
+	
+	
+	
+	/* =========================  difference test ============================= */
 	
 	/**
 	 * <<<< difference test >>>>
@@ -91,6 +99,10 @@ public class SlotGameTestLogicCompareWithExcel {
 	}
 	
 	
+	
+	
+	
+	/* =========================  basic test ============================= */
 	/*
 	 * 3*3
 	 */
@@ -132,6 +144,7 @@ public class SlotGameTestLogicCompareWithExcel {
 	
 	
 	
+	/* =========================  others ============================= */
 	/*
 	 * 
 	 */
