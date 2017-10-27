@@ -1,0 +1,46 @@
+log4j: reset attribute= "false".
+log4j: Threshold ="null".
+log4j: Retreiving an instance of org.apache.log4j.Logger.
+log4j: Setting [com.wdfall.vslot] additivity to [false].
+log4j: Level value for com.wdfall.vslot is  [INFO].
+log4j: com.wdfall.vslot level set to INFO
+log4j: Class name: [org.apache.log4j.ConsoleAppender]
+log4j: Parsing layout of class: "org.apache.log4j.PatternLayout"
+log4j: Setting property [conversionPattern] to [%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n].
+log4j: Adding appender named [console] to category [com.wdfall.vslot].
+log4j: Class name: [org.apache.log4j.RollingFileAppender]
+log4j: Setting property [append] to [false].
+log4j: Setting property [maxFileSize] to [10MB].
+log4j: Setting property [maxBackupIndex] to [10].
+log4j: Setting property [file] to [/logs/vslot-test.log].
+log4j: Parsing layout of class: "org.apache.log4j.PatternLayout"
+log4j: Setting property [conversionPattern] to [%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n].
+log4j: setFile called: /logs/vslot-test.log, false
+log4j: setFile ended
+log4j: Adding appender named [file] to category [com.wdfall.vslot].
+log4j: Level value for root is  [INFO].
+log4j: root level set to INFO
+log4j: Adding appender named [console] to category [root].
+2017-10-26 11:18:50 INFO  SlotSimulator:72 -  >>> slot simulator start !!
+2017-10-26 11:18:50 INFO  SlotSimulator:73 -  >>> startWithThread !!
+2017-10-26 11:18:50 INFO  SlotSimulator$SlotTask:142 -  >>> SlotTask com.wdfall.vslot.SlotSimulator$SlotTask@788b2fcb in Thread 12 start ! 
+2017-10-26 11:18:50 INFO  SlotSimulator$SlotTask:142 -  >>> SlotTask com.wdfall.vslot.SlotSimulator$SlotTask@6931fd5d in Thread 11 start ! 
+2017-10-26 11:18:50 INFO  SlotGame:51 -  >>> setting : SlotGameSetting(reelCount=3, reelCountArray=[3, 3, 3], betPerLine=1, normalSymbolList=[N1, N2, N3], otherSymbolList=[WD, SS], symbolList=[N1, N2, N3, WD, SS], reelCompositionList=[[SS, WD, N1, N1, N1, N1, N1, N1, N1, N1, N1, N1, N2, N2, N2, N2, N2, N2, N2, N2, N2, N2, N3, N3, N3, N3, N3, N3, N3, N3, N3, N3], [SS, WD, N1, N1, N1, N1, N1, N1, N1, N1, N1, N1, N2, N2, N2, N2, N2, N2, N2, N2, N2, N2, N3, N3, N3, N3, N3, N3, N3, N3, N3, N3], [SS, WD, N1, N1, N1, N1, N1, N1, N1, N1, N1, N1, N2, N2, N2, N2, N2, N2, N2, N2, N2, N2, N3, N3, N3, N3, N3, N3, N3, N3, N3, N3]], linePatternList=[[1, 1, 1]], payoutTableRuleList=[com.wdfall.vslot.payout.PayoutTableRuleNormalSymbol@3771d491, com.wdfall.vslot.payout.PayoutTableRuleNormalSymbol@16a540c3, com.wdfall.vslot.payout.PayoutTableRuleNormalSymbol@68c6533, com.wdfall.vslot.payout.PayoutTableRuleWildSymbol@6eb2afc5], payoutTableRuleScatter=com.wdfall.vslot.payout.PayoutTableRuleScatterSymbol@575e2bde)
+2017-10-26 11:18:50 INFO  SlotGame:51 -  >>> setting : SlotGameSetting(reelCount=3, reelCountArray=[3, 3, 3], betPerLine=1, normalSymbolList=[N1, N2, N3], otherSymbolList=[WD, SS], symbolList=[N1, N2, N3, WD, SS], reelCompositionList=[[SS, WD, N1, N1, N1, N1, N1, N1, N1, N1, N1, N1, N2, N2, N2, N2, N2, N2, N2, N2, N2, N2, N3, N3, N3, N3, N3, N3, N3, N3, N3, N3], [SS, WD, N1, N1, N1, N1, N1, N1, N1, N1, N1, N1, N2, N2, N2, N2, N2, N2, N2, N2, N2, N2, N3, N3, N3, N3, N3, N3, N3, N3, N3, N3], [SS, WD, N1, N1, N1, N1, N1, N1, N1, N1, N1, N1, N2, N2, N2, N2, N2, N2, N2, N2, N2, N2, N3, N3, N3, N3, N3, N3, N3, N3, N3, N3]], linePatternList=[[1, 1, 1]], payoutTableRuleList=[com.wdfall.vslot.payout.PayoutTableRuleNormalSymbol@2c337e1f, com.wdfall.vslot.payout.PayoutTableRuleNormalSymbol@3e4fd4a, com.wdfall.vslot.payout.PayoutTableRuleNormalSymbol@1d551646, com.wdfall.vslot.payout.PayoutTableRuleWildSymbol@7b68cba4], payoutTableRuleScatter=com.wdfall.vslot.payout.PayoutTableRuleScatterSymbol@4c1c8150)
+2017-10-26 11:18:50 INFO  SlotGame:54 -  >>> symbolList : [N1, N2, N3, WD, SS]
+2017-10-26 11:18:50 INFO  SlotGame:54 -  >>> symbolList : [N1, N2, N3, WD, SS]
+2017-10-26 11:19:23 INFO  SlotSimulator$SlotTask:155 -  >>> SlotTask com.wdfall.vslot.SlotSimulator$SlotTask@788b2fcb in Thread 12 end ! 
+2017-10-26 11:19:23 INFO  SlotSimulator$SlotTask:155 -  >>> SlotTask com.wdfall.vslot.SlotSimulator$SlotTask@6931fd5d in Thread 11 end ! 
+2017-10-26 11:19:23 INFO  SlotSimulator:100 -  >>> totalBet : 10000000  
+2017-10-26 11:19:23 INFO  SlotSimulator:101 -  >>> totalWin : 15891450  
+2017-10-26 11:19:23 INFO  SlotSimulator:102 -  >>> totalSpin : 10000000  
+2017-10-26 11:19:23 INFO  SlotSimulator:103 -  >>> totalHit : 1225563  
+2017-10-26 11:19:23 INFO  SlotSimulator:108 -  >>> threadCount : 2 
+2017-10-26 11:19:23 INFO  SlotSimulator:109 -  >>> gameRunCount : 5,000,000 
+2017-10-26 11:19:23 INFO  SlotSimulator:110 -  >>> Payout Percentage : 158.91 % 
+2017-10-26 11:19:23 INFO  SlotSimulator:111 -  >>> Hit Frequency : 12.26 % 
+2017-10-26 11:19:23 INFO  SlotSimulator:115 - !!!! payoutExpected = 158.8439 
+2017-10-26 11:19:23 INFO  SlotSimulator:116 - !!!! payoutReal = 158.9145 
+2017-10-26 11:19:23 INFO  SlotSimulator:117 - !!!! difference = 0.0706000000000131 
+2017-10-26 11:19:23 INFO  SlotSimulator:121 -  >>> time duration = 33,028 ms
+2017-10-26 11:19:23 INFO  SlotSimulator:122 -  >>> slot simulator end !!

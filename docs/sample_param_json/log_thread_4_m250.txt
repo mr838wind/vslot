@@ -1,0 +1,41 @@
+	/**
+	 * <<<< thread test >>>>
+	 * payoutExpected = 158.8439 
+	 * threadCount: pay out, difference, time
+	 * m1000: 		158.85422, 				0.010320000000007212,	2,663,074 ms -- 40min
+	 * thread-4: 	158.81821300000001 , 	0.02568699999997648,	7,050,986 ms -- 117min
+	 */
+
+
+=====================================================================
+2017-10-26 09:16:10 INFO  SlotSimulator:72 -  >>> slot simulator start !!
+2017-10-26 09:16:10 INFO  SlotSimulator:73 -  >>> startWithThread !!
+2017-10-26 09:16:11 INFO  SlotSimulator$SlotTask:142 -  >>> SlotTask com.wdfall.vslot.SlotSimulator$SlotTask@329c04f2 in Thread 11 start ! 
+2017-10-26 09:16:11 INFO  SlotSimulator$SlotTask:142 -  >>> SlotTask com.wdfall.vslot.SlotSimulator$SlotTask@61a485f9 in Thread 12 start ! 
+2017-10-26 09:16:11 INFO  SlotSimulator$SlotTask:142 -  >>> SlotTask com.wdfall.vslot.SlotSimulator$SlotTask@5337232e in Thread 13 start ! 
+2017-10-26 09:16:11 INFO  SlotSimulator$SlotTask:142 -  >>> SlotTask com.wdfall.vslot.SlotSimulator$SlotTask@4a34546b in Thread 14 start ! 
+2017-10-26 09:16:11 INFO  SlotGame:51 -  >>> setting : SlotGameSetting(reelCount=3, reelCountArray=[3, 3, 3], betPerLine=1, normalSymbolList=[N1, N2, N3], otherSymbolList=[WD, SS], symbolList=[N1, N2, N3, WD, SS], reelCompositionList=[[SS, WD, N1, N1, N1, N1, N1, N1, N1, N1, N1, N1, N2, N2, N2, N2, N2, N2, N2, N2, N2, N2, N3, N3, N3, N3, N3, N3, N3, N3, N3, N3], [SS, WD, N1, N1, N1, N1, N1, N1, N1, N1, N1, N1, N2, N2, N2, N2, N2, N2, N2, N2, N2, N2, N3, N3, N3, N3, N3, N3, N3, N3, N3, N3], [SS, WD, N1, N1, N1, N1, N1, N1, N1, N1, N1, N1, N2, N2, N2, N2, N2, N2, N2, N2, N2, N2, N3, N3, N3, N3, N3, N3, N3, N3, N3, N3]], linePatternList=[[1, 1, 1]], payoutTableRuleList=[com.wdfall.vslot.payout.PayoutTableRuleNormalSymbol@46a31ac0, com.wdfall.vslot.payout.PayoutTableRuleNormalSymbol@14ca2d72, com.wdfall.vslot.payout.PayoutTableRuleNormalSymbol@17b1738a, com.wdfall.vslot.payout.PayoutTableRuleWildSymbol@1481ef0a], payoutTableRuleScatter=com.wdfall.vslot.payout.PayoutTableRuleScatterSymbol@4a2a9240)
+2017-10-26 09:16:11 INFO  SlotGame:51 -  >>> setting : SlotGameSetting(reelCount=3, reelCountArray=[3, 3, 3], betPerLine=1, normalSymbolList=[N1, N2, N3], otherSymbolList=[WD, SS], symbolList=[N1, N2, N3, WD, SS], reelCompositionList=[[SS, WD, N1, N1, N1, N1, N1, N1, N1, N1, N1, N1, N2, N2, N2, N2, N2, N2, N2, N2, N2, N2, N3, N3, N3, N3, N3, N3, N3, N3, N3, N3], [SS, WD, N1, N1, N1, N1, N1, N1, N1, N1, N1, N1, N2, N2, N2, N2, N2, N2, N2, N2, N2, N2, N3, N3, N3, N3, N3, N3, N3, N3, N3, N3], [SS, WD, N1, N1, N1, N1, N1, N1, N1, N1, N1, N1, N2, N2, N2, N2, N2, N2, N2, N2, N2, N2, N3, N3, N3, N3, N3, N3, N3, N3, N3, N3]], linePatternList=[[1, 1, 1]], payoutTableRuleList=[com.wdfall.vslot.payout.PayoutTableRuleNormalSymbol@44f3b35d, com.wdfall.vslot.payout.PayoutTableRuleNormalSymbol@40cc3f1b, com.wdfall.vslot.payout.PayoutTableRuleNormalSymbol@5ceb966, com.wdfall.vslot.payout.PayoutTableRuleWildSymbol@6d3122b8], payoutTableRuleScatter=com.wdfall.vslot.payout.PayoutTableRuleScatterSymbol@34811d18)
+2017-10-26 09:16:11 INFO  SlotGame:51 -  >>> setting : SlotGameSetting(reelCount=3, reelCountArray=[3, 3, 3], betPerLine=1, normalSymbolList=[N1, N2, N3], otherSymbolList=[WD, SS], symbolList=[N1, N2, N3, WD, SS], reelCompositionList=[[SS, WD, N1, N1, N1, N1, N1, N1, N1, N1, N1, N1, N2, N2, N2, N2, N2, N2, N2, N2, N2, N2, N3, N3, N3, N3, N3, N3, N3, N3, N3, N3], [SS, WD, N1, N1, N1, N1, N1, N1, N1, N1, N1, N1, N2, N2, N2, N2, N2, N2, N2, N2, N2, N2, N3, N3, N3, N3, N3, N3, N3, N3, N3, N3], [SS, WD, N1, N1, N1, N1, N1, N1, N1, N1, N1, N1, N2, N2, N2, N2, N2, N2, N2, N2, N2, N2, N3, N3, N3, N3, N3, N3, N3, N3, N3, N3]], linePatternList=[[1, 1, 1]], payoutTableRuleList=[com.wdfall.vslot.payout.PayoutTableRuleNormalSymbol@5df0d738, com.wdfall.vslot.payout.PayoutTableRuleNormalSymbol@59cf485e, com.wdfall.vslot.payout.PayoutTableRuleNormalSymbol@1ccddd03, com.wdfall.vslot.payout.PayoutTableRuleWildSymbol@7609b3e7], payoutTableRuleScatter=com.wdfall.vslot.payout.PayoutTableRuleScatterSymbol@2d1be309)
+2017-10-26 09:16:11 INFO  SlotGame:51 -  >>> setting : SlotGameSetting(reelCount=3, reelCountArray=[3, 3, 3], betPerLine=1, normalSymbolList=[N1, N2, N3], otherSymbolList=[WD, SS], symbolList=[N1, N2, N3, WD, SS], reelCompositionList=[[SS, WD, N1, N1, N1, N1, N1, N1, N1, N1, N1, N1, N2, N2, N2, N2, N2, N2, N2, N2, N2, N2, N3, N3, N3, N3, N3, N3, N3, N3, N3, N3], [SS, WD, N1, N1, N1, N1, N1, N1, N1, N1, N1, N1, N2, N2, N2, N2, N2, N2, N2, N2, N2, N2, N3, N3, N3, N3, N3, N3, N3, N3, N3, N3], [SS, WD, N1, N1, N1, N1, N1, N1, N1, N1, N1, N1, N2, N2, N2, N2, N2, N2, N2, N2, N2, N2, N3, N3, N3, N3, N3, N3, N3, N3, N3, N3]], linePatternList=[[1, 1, 1]], payoutTableRuleList=[com.wdfall.vslot.payout.PayoutTableRuleNormalSymbol@6f6367bd, com.wdfall.vslot.payout.PayoutTableRuleNormalSymbol@6b5cee89, com.wdfall.vslot.payout.PayoutTableRuleNormalSymbol@2e5e6d86, com.wdfall.vslot.payout.PayoutTableRuleWildSymbol@6b10aef9], payoutTableRuleScatter=com.wdfall.vslot.payout.PayoutTableRuleScatterSymbol@1f3a62a9)
+2017-10-26 09:16:11 INFO  SlotGame:54 -  >>> symbolList : [N1, N2, N3, WD, SS]
+2017-10-26 09:16:11 INFO  SlotGame:54 -  >>> symbolList : [N1, N2, N3, WD, SS]
+2017-10-26 09:16:11 INFO  SlotGame:54 -  >>> symbolList : [N1, N2, N3, WD, SS]
+2017-10-26 09:16:11 INFO  SlotGame:54 -  >>> symbolList : [N1, N2, N3, WD, SS]
+2017-10-26 11:08:09 INFO  SlotSimulator$SlotTask:155 -  >>> SlotTask com.wdfall.vslot.SlotSimulator$SlotTask@329c04f2 in Thread 11 end ! 
+2017-10-26 11:11:33 INFO  SlotSimulator$SlotTask:155 -  >>> SlotTask com.wdfall.vslot.SlotSimulator$SlotTask@4a34546b in Thread 14 end ! 
+2017-10-26 11:13:23 INFO  SlotSimulator$SlotTask:155 -  >>> SlotTask com.wdfall.vslot.SlotSimulator$SlotTask@5337232e in Thread 13 end ! 
+2017-10-26 11:13:41 INFO  SlotSimulator$SlotTask:155 -  >>> SlotTask com.wdfall.vslot.SlotSimulator$SlotTask@61a485f9 in Thread 12 end ! 
+2017-10-26 11:13:41 INFO  SlotSimulator:100 -  >>> totalBet : 1000000000  
+2017-10-26 11:13:41 INFO  SlotSimulator:101 -  >>> totalWin : 1588182130  
+2017-10-26 11:13:41 INFO  SlotSimulator:102 -  >>> totalSpin : 1000000000  
+2017-10-26 11:13:41 INFO  SlotSimulator:103 -  >>> totalHit : 122577676  
+2017-10-26 11:13:41 INFO  SlotSimulator:108 -  >>> threadCount : 4 
+2017-10-26 11:13:41 INFO  SlotSimulator:109 -  >>> gameRunCount : 250,000,000 
+2017-10-26 11:13:41 INFO  SlotSimulator:110 -  >>> Payout Percentage : 158.82 % 
+2017-10-26 11:13:41 INFO  SlotSimulator:111 -  >>> Hit Frequency : 12.26 % 
+2017-10-26 11:13:41 INFO  SlotSimulator:115 - !!!! payoutExpected = 158.8439 
+2017-10-26 11:13:41 INFO  SlotSimulator:116 - !!!! payoutReal = 158.81821300000001 
+2017-10-26 11:13:41 INFO  SlotSimulator:117 - !!!! difference = 0.02568699999997648 
+2017-10-26 11:13:41 INFO  SlotSimulator:121 -  >>> time duration = 7,050,986 ms
+2017-10-26 11:13:41 INFO  SlotSimulator:122 -  >>> slot simulator end !!
