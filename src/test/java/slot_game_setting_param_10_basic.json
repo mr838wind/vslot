@@ -6,37 +6,25 @@
   "otherSymbolList" : [ "WD", "SS" ],
   "reelCompositionParamList" : [ {
     "SS" : 1,
-    "N1" : 10,
-    "N2" : 10,
-    "N3" : 10,
-    "WD" : 1
+    "WD" : 1,
+    "N1" : 8,
+    "N2" : 12,
+    "N3" : 10
   }, {
-    "SS" : 1,
+  	"SS" : 1,
+    "WD" : 1,
     "N1" : 10,
     "N2" : 10,
-    "N3" : 10,
-    "WD" : 1
-  }, {
+    "N3" : 10
+  },{
     "SS" : 1,
-    "N1" : 10,
-    "N2" : 10,
-    "N3" : 10,
-    "WD" : 1
-  }, {
-    "SS" : 1,
-    "N1" : 10,
-    "N2" : 10,
-    "N3" : 10,
-    "WD" : 1
-  }, {
-    "SS" : 1,
-    "N1" : 10,
-    "N2" : 10,
-    "N3" : 10,
-    "WD" : 1
-  } ],
-  "linePatternList" : [ [ 1, 1, 1 ] ],
-  "payoutTableRuleParamList" : [ {
+    "WD" : 1,
+    "N1" : 14,
+    "N2" : 8,
+    "N3" : 8
+  }],
+  "linePatternList" : [ [ 1, 1, 1] ],
+  "payoutTableRuleParamList" : [{
     "symbol" : "SS",
     "symbolType" : "S",
     "rule" : {
@@ -66,5 +54,5 @@
     "rule" : {
       "3" : 20
     }
-  } ]
+  }]
 }

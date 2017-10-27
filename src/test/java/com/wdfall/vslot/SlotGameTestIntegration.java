@@ -39,7 +39,7 @@ public class SlotGameTestIntegration {
 	public void testIntegrationBasic() throws Exception {
 		readSettingFrom(JSON_FILE_PATH_BASIC);
 		
-		commonTest(158.8439941);
+		commonTest(145.0805);
 	}
 
 	@Test
