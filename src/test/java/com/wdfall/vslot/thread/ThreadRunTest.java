@@ -11,9 +11,30 @@ public class ThreadRunTest {
 
 	private static final int RUN_COUNT =   1000*1000 * 1000;
 
+	public static void main(String[] args) throws Exception {
+		new ThreadRunTest().testMemoryHashmap();
+	}
+	
 	@Before
 	public void setUp() {
 	}
+	
+	
+	@Test
+	public void testMemoryHashmap() throws Exception {
+		testItemMemoryHashmap(2, RUN_COUNT / 2);
+		//testItemMemoryHashmap(1, RUN_COUNT);
+
+
+		Assert.assertTrue(true);
+	}
+	
+	
+	private void testItemMemoryHashmap(int threadCount, int runCount) throws Exception {
+		ThreadRun<CalcTaskMemoryHashmap> threadRun = new ThreadRun<CalcTaskMemoryHashmap>(CalcTaskMemoryHashmap.class, threadCount, runCount);
+		threadRun.startWithThread();
+	}
+	
 	
 	/*
 	 * CalcTaskMemory: SlotReelSymbolGenerator

@@ -18,11 +18,11 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 @Slf4j
-public class CalcTaskMemory extends CalcTask {
+public class CalcTaskMemoryHashmap extends CalcTask {
 	
 	SlotReelSymbolGenerator generator;
 	
-	public CalcTaskMemory() {
+	public CalcTaskMemoryHashmap() {
 		super();
 		int[] reelCountArray = new int[]{3,3,3,3,3};
 		List<List<String>> reelCompositionList = new ArrayList<List<String>>();
@@ -67,12 +67,12 @@ public class CalcTaskMemory extends CalcTask {
 	public void doSomeMemoryProcess() {
 		super.doSomeMemoryProcess();
 		
-		List<SomeObj> list = new ArrayList<>();
+		Map<Integer,SomeObj> map = new HashMap<>();
 		for(int i=0; i<1000*1000; i++) {
 			String[][] stringArray = generator.generateReelShowArray();
 			SomeObj obj = new SomeObj();
 			obj.setStringArray(stringArray); 
-			list.add(obj);
+			map.put(i, obj);
 		}
 		
 	}
