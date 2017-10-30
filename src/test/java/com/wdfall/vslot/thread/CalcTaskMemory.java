@@ -68,7 +68,7 @@ public class CalcTaskMemory extends CalcTask {
 		super.doSomeMemoryProcess();
 		
 		List<SomeObj> list = new ArrayList<>();
-		for(int i=0; i<1000*1000; i++) {
+		for(int i=0; i<1000; i++) {
 			String[][] stringArray = generator.generateReelShowArray();
 			SomeObj obj = new SomeObj();
 			obj.setStringArray(stringArray); 

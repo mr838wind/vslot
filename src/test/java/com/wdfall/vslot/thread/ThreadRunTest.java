@@ -11,29 +11,38 @@ public class ThreadRunTest {
 
 	private static final int RUN_COUNT =   1000*1000 * 1000;
 
-	public static void main(String[] args) throws Exception {
-		new ThreadRunTest().testMemoryHashmap();
-	}
 	
 	@Before
 	public void setUp() {
 	}
-	
+
 	
 	@Test
-	public void testMemoryHashmap() throws Exception {
-		testItemMemoryHashmap(2, RUN_COUNT / 2);
-		//testItemMemoryHashmap(1, RUN_COUNT);
+	public void testMemorySimple1() throws Exception {
+		testItemGeneric(CalcTaskMemorySimple.class, 1, RUN_COUNT); 
 
+		Assert.assertTrue(true);
+	}
+
+	@Test
+	public void testMemorySimple2() throws Exception {
+		testItemGeneric(CalcTaskMemorySimple.class, 2, RUN_COUNT / 2);
 
 		Assert.assertTrue(true);
 	}
 	
 	
-	private void testItemMemoryHashmap(int threadCount, int runCount) throws Exception {
-		ThreadRun<CalcTaskMemoryHashmap> threadRun = new ThreadRun<CalcTaskMemoryHashmap>(CalcTaskMemoryHashmap.class, threadCount, runCount);
-		threadRun.startWithThread();
+	
+	
+	@Test
+	public void testMemoryHashmap() throws Exception {
+		testItemGeneric(CalcTaskMemoryHashmap.class, 1, RUN_COUNT);
+		testItemGeneric(CalcTaskMemoryHashmap.class, 2, RUN_COUNT / 2);
+
+
+		Assert.assertTrue(true);
 	}
+	
 	
 	
 	/*
@@ -53,22 +62,20 @@ public class ThreadRunTest {
 	
 	
 	@Test
-	public void testMemory() throws Exception {
-		testItemMemory(1, RUN_COUNT);
-
-		testItemMemory(2, RUN_COUNT / 2);
+	public void testMemory1() throws Exception {
+		testItemGeneric(CalcTaskMemory.class, 1, RUN_COUNT);
 
 		Assert.assertTrue(true);
 	}
 	
-	
-	private void testItemMemory(int threadCount, int runCount) throws Exception {
-		ThreadRun<CalcTaskMemory> threadRun = new ThreadRun<CalcTaskMemory>(CalcTaskMemory.class, threadCount, runCount);
-		threadRun.startWithThread();
+	@Test
+	public void testMemory2() throws Exception {
+		testItemGeneric(CalcTaskMemory.class, 2, RUN_COUNT / 2);
+		
+		Assert.assertTrue(true);
 	}
 	
 	
-
 	/*
 	 * RUN_COUNT =   1000*1000 * 1000; 
 	 * 
@@ -84,16 +91,22 @@ public class ThreadRunTest {
 	 */
 	
 	@Test
-	public void testAll() throws Exception {
-		testItem(1, RUN_COUNT);
-
-		testItem(2, RUN_COUNT / 2);
+	public void testCalcTask1() throws Exception {
+		testItemGeneric(CalcTask.class, 1, RUN_COUNT);
 
 		Assert.assertTrue(true);
 	}
+	
+	@Test
+	public void testCalcTask2() throws Exception {
+		testItemGeneric(CalcTask.class, 2, RUN_COUNT / 2);
 
-	private void testItem(int threadCount, int runCount) throws Exception {
-		ThreadRun<CalcTask> threadRun = new ThreadRun<CalcTask>(CalcTask.class, threadCount, runCount);
+		Assert.assertTrue(true);
+	}
+	
+	
+	private <T extends CalcTask> void testItemGeneric(Class<T> clazz, int threadCount, int runCount) throws Exception {
+		ThreadRun<T> threadRun = new ThreadRun<T>(clazz, threadCount, runCount);
 		threadRun.startWithThread();
 	}
 

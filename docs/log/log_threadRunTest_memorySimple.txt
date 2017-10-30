@@ -1,0 +1,19 @@
+2017-10-30 10:43:21 INFO  ThreadRun:41 -  >>> slot simulator start !!
+2017-10-30 10:43:21 INFO  ThreadRun:42 -  >>> startWithThread !!
+2017-10-30 10:43:21 INFO  CalcTask:29 -  >>> CalcTask com.wdfall.vslot.thread.CalcTaskMemorySimple@210604f0 in Thread 11 start ! 
+2017-10-30 10:43:48 INFO  CalcTask:41 -  >>> CalcTask com.wdfall.vslot.thread.CalcTaskMemorySimple@210604f0 in Thread 11 end ! 
+2017-10-30 10:43:48 INFO  ThreadRun:66 -  >>> meanResult = 49.499219825 
+2017-10-30 10:43:49 INFO  ThreadRun:67 -  >>> time duration = 27,302 ms
+2017-10-30 10:43:49 INFO  ThreadRun:68 -  >>> slot simulator end !!
+
+
+2017-10-30 11:01:47 INFO  ThreadRun:41 -  >>> slot simulator start !!
+2017-10-30 11:01:47 INFO  ThreadRun:42 -  >>> startWithThread !!
+2017-10-30 11:01:47 INFO  CalcTask:29 -  >>> CalcTask com.wdfall.vslot.thread.CalcTaskMemorySimple@796b41 in Thread 11 start ! 
+2017-10-30 11:01:47 INFO  CalcTask:29 -  >>> CalcTask com.wdfall.vslot.thread.CalcTaskMemorySimple@64e2b796 in Thread 12 start ! 
+2017-10-30 11:02:03 INFO  CalcTask:41 -  >>> CalcTask com.wdfall.vslot.thread.CalcTaskMemorySimple@796b41 in Thread 11 end ! 
+2017-10-30 11:02:03 INFO  CalcTask:41 -  >>> CalcTask com.wdfall.vslot.thread.CalcTaskMemorySimple@64e2b796 in Thread 12 end ! 
+2017-10-30 11:02:03 INFO  ThreadRun:66 -  >>> meanResult = 49.499301313000004 
+2017-10-30 11:02:03 INFO  ThreadRun:67 -  >>> time duration = 15,812 ms
+2017-10-30 11:02:03 INFO  ThreadRun:68 -  >>> slot simulator end !!
+
