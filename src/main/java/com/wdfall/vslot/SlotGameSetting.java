@@ -60,7 +60,16 @@ public class SlotGameSetting {
 	}
 	
 	public void validate() {
-		//TODO ...
+		if(reelCountArray.length != reelCount) {
+			throw new IllegalArgumentException("reelCountArray != reelCount");
+		}
+		if(reelCompositionList.size() != reelCount) {
+			throw new IllegalArgumentException("reelCompositionList != reelCount");
+		}
+		int linePatternSize = linePatternList.get(0).size();
+		if(linePatternSize != reelCount) {
+			throw new IllegalArgumentException("linePatternSize != reelCount");
+		}
 	}
 
 	public void initFromExcel() {

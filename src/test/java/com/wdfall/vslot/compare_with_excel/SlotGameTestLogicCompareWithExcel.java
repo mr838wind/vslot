@@ -16,6 +16,7 @@ public abstract class SlotGameTestLogicCompareWithExcel {
 	public static final double EXPECTED_SCATTER = 158.8439;
 	public static final double EXPECTED_3V4 = 504.2076;
 	public static final double EXPECTED_SYMBOL_NUMBER = 145.0805;
+	public static final double EXPECTED_DOLPHIN = 0; // unknown
 	/*
 	 * 10*1000*1000 일때 1% 차이안에 있음. ---- (실행속도 좀 늦음)
 	 * 1000*1000 도 1~2%내에 있음.---- (실행속도 빠름)
@@ -39,6 +40,8 @@ public abstract class SlotGameTestLogicCompareWithExcel {
 	public static final String JSON_FILE_PATH_3V4 = "param/slot_game_setting_param_11_3v4.json";
 	// 경우의 수 : 32768
 	public static final String JSON_FILE_PATH_SYMBOL_NUMBER = "param/slot_game_setting_param_10_4_symbol_number.json";
+	// 경우의 수: 
+	public static final String JSON_FILE_PATH_DOLPHIN = "param/slot_game_setting_param_12_dolphin.json";
 	
 	@Before
 	public void setUp() {
@@ -58,7 +61,11 @@ public abstract class SlotGameTestLogicCompareWithExcel {
 			SlotSimulator slotSimulator = new SlotSimulator(JSON_FILE_PATH, THREAD_COUNT, SPIN_COUNT_PER_GAME);
 			slotSimulator.setPayoutExpected(EXPECTED);
 			slotSimulator.startWithThread();
-			Assert.assertTrue( slotSimulator.getDifference() < VALUE_MAX_DIFFERENCE); 
+			if(EXPECTED > 0) {
+				Assert.assertTrue( slotSimulator.getDifference() < VALUE_MAX_DIFFERENCE); 
+			} else {
+				Assert.assertTrue(true);
+			}
 		} catch (Exception e) {
 			log.error("",e); 
 		}

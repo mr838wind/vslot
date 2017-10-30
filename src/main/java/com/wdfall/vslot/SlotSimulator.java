@@ -111,9 +111,9 @@ public class SlotSimulator {
 		log.info(" >>> Hit Frequency : {} % ", hitFrequencyShow);
 		
 		//
+		log.info("!!!! payoutReal = {} ", payoutReal);
 		if(payoutExpected > 0) {
 			log.info("!!!! payoutExpected = {} ", payoutExpected);
-			log.info("!!!! payoutReal = {} ", payoutReal);
 			log.info("!!!! difference = {} ", getDifference()); 
 		}
 		
