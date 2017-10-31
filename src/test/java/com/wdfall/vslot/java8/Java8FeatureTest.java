@@ -28,7 +28,7 @@ public class Java8FeatureTest {
 		List<String> list = Arrays.asList("hi","hello","world");
 		Stream<String> stream = list.stream();
 		//
-		stream.distinct().limit(5).sorted().forEach(System.out::println);
+		stream.distinct().limit(5).sorted().forEach(log::info);
 		//
 	}
 	
