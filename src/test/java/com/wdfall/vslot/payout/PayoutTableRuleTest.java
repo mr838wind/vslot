@@ -10,10 +10,15 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.wdfall.vslot.pay_result.PayResultOne;
+
 public class PayoutTableRuleTest {
 	
+	private static final int LINE_NUM_0 = 0;
+
 	private static final int HA_4_PAY = 100;
 
+	
 	@Before
 	public void setUp() {
 		
@@ -28,10 +33,14 @@ public class PayoutTableRuleTest {
 		PayoutTableRule rule = new PayoutTableRuleNormalSymbol("HA", countPayMapHA);
 		
 		
-		int pay1 = rule.calculate(Arrays.asList("HA", "HA","HA", "HA","MA"));
+		PayResultOne currentPayResult = new PayResultOne();
+		rule.calculate(Arrays.asList("HA", "HA","HA", "HA","MA"), currentPayResult, LINE_NUM_0);
+		long pay1 = currentPayResult.getLinePay(LINE_NUM_0);
 		Assert.assertTrue((pay1 == HA_4_PAY));
 		
-		int pay2 = rule.calculate(Arrays.asList("MA", "MA","MA", "MA","MA"));
+		currentPayResult = new PayResultOne();
+		rule.calculate(Arrays.asList("MA", "MA","MA", "MA","MA"), currentPayResult, LINE_NUM_0);
+		long pay2 = currentPayResult.getLinePay(LINE_NUM_0);
 		Assert.assertTrue((pay2 == 0));
 	}
 	
@@ -66,13 +75,20 @@ public class PayoutTableRuleTest {
 		countPayMapWD.put(5, 5000);
 		PayoutTableRule rule = new PayoutTableRuleWildSymbol("WD", countPayMapWD, normalSymbolList , normalSymbolRuleList);
 		
-		int pay1 = rule.calculate(Arrays.asList("HA", "HA","HA", "HA","MA"));
+		PayResultOne currentPayResult = new PayResultOne();
+		
+		rule.calculate(Arrays.asList("HA", "HA","HA", "HA","MA"), currentPayResult, LINE_NUM_0);
+		long pay1 = currentPayResult.getLinePay(LINE_NUM_0);
 		Assert.assertTrue((pay1 == 0));
 		
-		int pay2 = rule.calculate(Arrays.asList("WD", "HA","HA", "HA","MA")); 
+		currentPayResult = new PayResultOne();
+		rule.calculate(Arrays.asList("WD", "HA","HA", "HA","MA"), currentPayResult, LINE_NUM_0);
+		long pay2 = currentPayResult.getLinePay(LINE_NUM_0);
 		Assert.assertTrue((pay2 == HA_4_PAY));
 	
-		int pay3 = rule.calculate(Arrays.asList("WD", "WD","WD", "HA","MA")); 
+		currentPayResult = new PayResultOne();
+		rule.calculate(Arrays.asList("WD", "WD","WD", "HA","MA"), currentPayResult, LINE_NUM_0);
+		long pay3 = currentPayResult.getLinePay(LINE_NUM_0);
 		Assert.assertTrue((pay3 == Math.max(WD_3_PAY, HA_4_PAY)));
 	}
 	
@@ -101,10 +117,15 @@ public class PayoutTableRuleTest {
 			new String[]{"MB","MA","MB"}
 		};
 		
-		int pay1 = rule.calculate(reelShowArrayScatter2);
+		PayResultOne currentPayResult = new PayResultOne();
+		
+		rule.calculate(reelShowArrayScatter2, currentPayResult );
+		long pay1 = currentPayResult.getScatterPay();
 		Assert.assertTrue((pay1 == 0));
 		
-		int pay2 = rule.calculate(reelShowArrayScatter4);
+		currentPayResult = new PayResultOne();
+		rule.calculate(reelShowArrayScatter4, currentPayResult);
+		long pay2 = currentPayResult.getScatterPay();
 		Assert.assertTrue((pay2 == PAY_4));
 	}
 	

@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.wdfall.vslot.pay_result.PayResultItem;
+import com.wdfall.vslot.pay_result.PayResultOne;
 import com.wdfall.vslot.utils.PermutationsWithRepeat;
+import com.wdfall.vslot.utils.SlotUtils;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -35,10 +38,9 @@ public class PayoutTableRuleWildSymbol implements PayoutTableRule {
 	}
 
 	@Override
-	public int calculate(final List<String> currentResult) {
-		int pay = 0;
+	public void calculate(final List<String> currentResult, PayResultOne currentPayResult, int lineNum) {
 		if(!currentResult.contains(wildSymbol)) {
-			return 0;
+			return;
 		}
 		
 		// 복잡한 방법: wild를 normal symbol로 바꿔서 비교
@@ -56,11 +58,11 @@ public class PayoutTableRuleWildSymbol implements PayoutTableRule {
 		List<String> tmpResult = new ArrayList<>(currentResult);
 		
 		// <<check 1>>:  wild symbol leftmost to rightmost match result  
-		pay = checkWildSymbolLeftmostToRightmost(currentResult);
+		checkWildSymbolLeftmostToRightmost(currentResult, currentPayResult, lineNum);
 		
 		// <<check 2>>: wild symbol replace to normal symbol one by one
 		// 1. list all: wd,wd,wd --> (HA,HA,HA), (HA,HA,MA) ...
-		CallbackTmpResult callPay = new CallbackTmpResult();
+		//CallbackTmpResult callPay = new CallbackTmpResult();
 		PermutationsWithRepeat.permute(normalSymbolList, wildCount, new PermutationsWithRepeat.PermuteCallback<String>() {
 
 			@Override
@@ -71,20 +73,14 @@ public class PayoutTableRuleWildSymbol implements PayoutTableRule {
 					String replaceSymbol = snapshot.get(i);
 					tmpResult.set(wildSymbolIndex, replaceSymbol);
 					//
-					int normalPay = calculateByNormalSymbolRule(tmpResult);
-					
-					int permuPay = Math.max(normalPay, callPay.getTmpPay());
-					callPay.setTmpPay(permuPay);
+					calculateByNormalSymbolRule(tmpResult, currentPayResult, lineNum);
 				}
 			}
 			
 		});
-		
-		pay = Math.max(pay, callPay.getTmpPay());
-		return pay;
 	}
 
-	private int checkWildSymbolLeftmostToRightmost(final List<String> currentResult) {
+	private int checkWildSymbolLeftmostToRightmost(final List<String> currentResult, PayResultOne currentPayResult, int lineNum) {
 		int pay = 0;
 		// leftmost to rightmost match result
 		int matchCount = 0;
@@ -99,17 +95,22 @@ public class PayoutTableRuleWildSymbol implements PayoutTableRule {
 		if(countPayMap.containsKey(matchCount)) {
 			pay = countPayMap.get(matchCount);
 			log.debug(" <<win>> symbol = {}, count = {}, pay = {}", wildSymbol, matchCount, pay);
+			
+			//
+			PayResultItem wildItem = new PayResultItem();
+			wildItem.setName(SlotUtils.getPayResultItemName(wildSymbol, matchCount));
+			wildItem.setCount(1);
+			wildItem.setPay(pay);
+			currentPayResult.setLineResult(lineNum, wildItem);
+			
 		}
 		return pay;
 	}
 
-	private int calculateByNormalSymbolRule(List<String> tmpResult) {
-		int pay = 0;
+	private void calculateByNormalSymbolRule(List<String> tmpResult, PayResultOne currentPayResult, int lineNum) {
 		for(PayoutTableRule rule : normalSymbolRuleList) {
-			int payInRule = rule.calculate(tmpResult);
-			pay = Math.max(payInRule, pay); 
+			rule.calculate(tmpResult, currentPayResult, lineNum);
 		}
-		return pay;
 	}
 	
 }

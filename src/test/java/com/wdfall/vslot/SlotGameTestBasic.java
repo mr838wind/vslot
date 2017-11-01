@@ -13,6 +13,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 
 import com.wdfall.vslot.json.SlotGameSettingParam;
+import com.wdfall.vslot.pay_result.PayResultOne;
 import com.wdfall.vslot.random.SlotReelSymbolGenerator;
 import com.wdfall.vslot.utils.FileUtil;
 
@@ -79,7 +80,8 @@ public class SlotGameTestBasic {
 			new String[] {"N1","N3","N3"},
 		}).when(slotReelSymbolGenerator).generateReelShowArray();
 		
-		int win = game.spin();
+		PayResultOne currentResult = game.spin();
+		long win = currentResult.getCurrentPayResult();
 		
 		Assert.assertTrue( win == N1_3_PAY  );
 	}
@@ -92,7 +94,8 @@ public class SlotGameTestBasic {
 			new String[] {"N2","N3","N3"},
 		}).when(slotReelSymbolGenerator).generateReelShowArray();
 		
-		int win = game.spin();
+		PayResultOne currentResult = game.spin();
+		long win = currentResult.getCurrentPayResult();
 		
 		Assert.assertTrue( win == 0  );
 	}
@@ -105,7 +108,8 @@ public class SlotGameTestBasic {
 			new String[] {"N1","N3","N3"},
 		}).when(slotReelSymbolGenerator).generateReelShowArray();
 		
-		int win = game.spin();
+		PayResultOne currentResult = game.spin();
+		long win = currentResult.getCurrentPayResult();
 		
 		Assert.assertTrue( win == N1_3_PAY  );
 	}
@@ -118,7 +122,8 @@ public class SlotGameTestBasic {
 			new String[] {"N2","N3","N3"},
 		}).when(slotReelSymbolGenerator).generateReelShowArray();
 		
-		int win = game.spin();
+		PayResultOne currentResult = game.spin();
+		long win = currentResult.getCurrentPayResult();
 		
 		Assert.assertTrue( win == 0  );
 	}
@@ -131,7 +136,8 @@ public class SlotGameTestBasic {
 			new String[] {"SS","N3","N3"},
 		}).when(slotReelSymbolGenerator).generateReelShowArray();
 		
-		int win = game.spin();
+		PayResultOne currentResult = game.spin();
+		long win = currentResult.getCurrentPayResult();
 		
 		Assert.assertTrue( win == SCATTER_3_PAY  );
 	}
@@ -144,7 +150,8 @@ public class SlotGameTestBasic {
 			new String[] {"N1","N3","N3"},
 		}).when(slotReelSymbolGenerator).generateReelShowArray();
 		
-		int win = game.spin();
+		PayResultOne currentResult = game.spin();
+		long win = currentResult.getCurrentPayResult();
 		
 		Assert.assertTrue( win == 0  );
 	}

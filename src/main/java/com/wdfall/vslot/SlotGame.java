@@ -3,6 +3,7 @@ package com.wdfall.vslot;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.wdfall.vslot.pay_result.PayResultOne;
 import com.wdfall.vslot.payout.PayoutTableRule;
 import com.wdfall.vslot.random.SlotReelSymbolGenerator;
 import com.wdfall.vslot.random.SlotReelSymbolGeneratorShuffle;
@@ -33,6 +34,8 @@ public class SlotGame {
 	// >>> var 
 	// reel show array
 	private String[][] reelShowArray;
+	
+	private PayResultOne currentPayResult;
 	
 	// total
 	private long totalBet = 0;
@@ -68,7 +71,7 @@ public class SlotGame {
 	/**
 	 * 게임 한번 실행 
 	 */
-	public int spin() {
+	public PayResultOne spin() {
 		//
 		int currentBet = setting.getBetPerLine() * setting.getLinePatternList().size();
 		totalBet = totalBet + currentBet;
@@ -76,21 +79,26 @@ public class SlotGame {
 		
 		// 1. init reelShowArray and others
 		initReelShowArray(reelShowArray);
+		currentPayResult = new PayResultOne();
 		
 		// 2. generate current reelShowArray
 		generateCurrentReelShowArray();
 		logReelShowArray();
 		
 		// 3. check result 
-		int win = checkCurrentResult();
+		checkCurrentResult();
 		
+		
+		//log.debug("{}", currentPayResult.getCurrentPayResult()); 
+		//log.debug("{}", currentPayResult); 
 		//
-		totalWin = totalWin + win;
-		if(win > 0) {
+		long currentWin = currentPayResult.getCurrentPayResult();
+		totalWin = totalWin + currentWin;
+		if(currentWin > 0) {
 			totalHit = totalHit + 1;
 		}
 		
-		return win;
+		return currentPayResult;
 	}
 	
 	private void initReelShowArray(String[][] array) {
@@ -106,48 +114,37 @@ public class SlotGame {
 		reelShowArray = slotReelSymbolGenerator.generateReelShowArray();
 	}
 
-	private int checkCurrentResult() {
-		int win = 0;
+	private void checkCurrentResult() {
 		
 		// win = scatterPay + nonScatterPay
-		int scatterPay = checkScatterPay();
-		win = win + scatterPay;
+		checkScatterPay();
 		
-		int nonScatterPay = checkNonScatterPay();
-		win = win + nonScatterPay;
+		checkNonScatterPay();
 		
-		log.debug(" current win : {}", win);
-		return win;
+		log.debug(" current win : {}", currentPayResult.getCurrentPayResult());
 	}
 
-	private int checkNonScatterPay() {
-		int win = 0;
-		// add all pay from win patterns 
+	private void checkNonScatterPay() {
+		// add all pay from win patterns
+		int lineNum = -1;
 		for(List<Integer> pattern : setting.getLinePatternList()) {
-			int pay = calcPayInPattern(pattern);
-			win = win + pay;
+			lineNum++;
+			calcPayInPattern(pattern, lineNum);
 		}
-		return win;
 	}
 
-	private int checkScatterPay() {
-		int scatterPay = 0;
+	private void checkScatterPay() {
 		if(setting.isScatterExist()) {
-			scatterPay = setting.getPayoutTableRuleScatter().calculate(reelShowArray);
+			setting.getPayoutTableRuleScatter().calculate(reelShowArray, currentPayResult);
 		}
-		return scatterPay;
 	}
 	
 
-	private int calcPayInPattern(List<Integer> pattern) {
-		int pay = 0;
+	private void calcPayInPattern(List<Integer> pattern, int lineNum) {
 		List<String> currentResult = getCurrentResult(pattern);
 		for(PayoutTableRule rule : setting.getPayoutTableRuleList()) {
-			int payInRule = rule.calculate(currentResult);
-			pay = Math.max(payInRule, pay); 
+			rule.calculate(currentResult, currentPayResult, lineNum);
 		}
-		
-		return pay;
 	}
 
 	private List<String> getCurrentResult(List<Integer> pattern) {

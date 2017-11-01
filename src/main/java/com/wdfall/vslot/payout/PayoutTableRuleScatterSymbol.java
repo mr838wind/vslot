@@ -2,6 +2,10 @@ package com.wdfall.vslot.payout;
 
 import java.util.Map;
 
+import com.wdfall.vslot.pay_result.PayResultItem;
+import com.wdfall.vslot.pay_result.PayResultOne;
+import com.wdfall.vslot.utils.SlotUtils;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -17,7 +21,7 @@ public class PayoutTableRuleScatterSymbol implements PayoutTableRuleScatter {
 	}
 	
 	@Override
-	public int calculate(final String[][] reelShowArray) {
+	public void calculate(final String[][] reelShowArray, PayResultOne currentPayResult ) {
 		int pay = 0;
 		
 		// count all scatter in show 
@@ -35,9 +39,20 @@ public class PayoutTableRuleScatterSymbol implements PayoutTableRuleScatter {
 		if(countPayMap.containsKey(matchCount)) {
 			pay = countPayMap.get(matchCount);
 			log.debug(" <<win scatter>> symbol = {}, count = {}, pay = {}", symbol, matchCount, pay);
+			
+			//
+			PayResultItem scatter = new PayResultItem();
+			scatter.setName(SlotUtils.getPayResultItemName(symbol, matchCount));
+			scatter.setCount(1);
+			scatter.setPay(pay);
+			currentPayResult.setScatter(scatter);
+			
 		}
 		
-		return pay;
 	}
+
 	
+	
+
+
 }

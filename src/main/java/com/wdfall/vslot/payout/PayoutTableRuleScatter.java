@@ -1,5 +1,7 @@
 package com.wdfall.vslot.payout;
 
+import com.wdfall.vslot.pay_result.PayResultOne;
+
 public interface PayoutTableRuleScatter {
-	int calculate(final String[][] reelShowArray);
+	void calculate(final String[][] reelShowArray, PayResultOne currentPayResult);
 }

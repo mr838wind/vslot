@@ -15,4 +15,16 @@ public class SlotUtils {
 	public static String getBigNumberFormat(double data) {
 		return bigNumberFormat.format(data);
 	}
+	
+	/**
+	 * pay result를 명명 규칙
+	 * @param symbol
+	 * @param matchCount
+	 * @return
+	 */
+	public static String getPayResultItemName(String symbol, int matchCount) {
+		return symbol + "_" + matchCount;
+	}
+	
+	
 }
