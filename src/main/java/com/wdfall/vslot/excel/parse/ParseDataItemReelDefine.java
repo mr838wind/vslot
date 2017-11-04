@@ -31,10 +31,9 @@ public class ParseDataItemReelDefine extends ParseDataItemTemplate {
 		List<Map<String, Integer>> reelCompositionParamList = new ArrayList<>(); 
 		
 		// 릴1,릴2...
-		List<String> symbolIdList = excelDataMap.get("ID");
+		List<String> symbolIdList = parsedDataList.get(0); //ID
 		for(int offset=1; offset<headerLine.size(); offset++) {
-			String header = headerLine.get(offset);  
-			List<String> reelList = excelDataMap.get(header);
+			List<String> reelList = parsedDataList.get(offset);
 			
 			Map<String, Integer> reelComp = generateReelCompositionMap(symbolIdList, reelList);
 			reelCompositionParamList.add(reelComp);

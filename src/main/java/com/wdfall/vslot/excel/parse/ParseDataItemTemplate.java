@@ -1,5 +1,6 @@
 package com.wdfall.vslot.excel.parse;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,8 +20,9 @@ public abstract class ParseDataItemTemplate {
 	// var
 	protected ParamItemLocation loc;
 	protected ParamItemLocation dataLoc;
+	//
 	protected List<String> headerLine;
-	protected Map<String, List<String>> excelDataMap;
+	protected List<List<String>> parsedDataList;
 	
 	public ParseDataItemTemplate(List<List<String>> excelData, String inputSymbol) {
 		super();
@@ -45,12 +47,11 @@ public abstract class ParseDataItemTemplate {
 		log.info("headerLine = {}", headerLine); 
 		
 		// 3. data
-		excelDataMap = new HashMap<>();
+		parsedDataList = new ArrayList<List<String>>();
 		for(int offset=0; offset<headerLine.size(); offset++) {
-			String header = headerLine.get(offset);
 			int cellIndex = dataLoc.getCellIndexStart() + offset;
 			List<String> value = ExcelUtils.readExcelDataVertical(excelData, dataLoc, cellIndex);
-			excelDataMap.put(header, value);
+			parsedDataList.add(value);
 		}
 		
 		// 4. handle
