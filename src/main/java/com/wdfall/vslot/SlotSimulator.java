@@ -33,6 +33,12 @@ public class SlotSimulator {
 
 	// setting file path 
 	private String filePath;
+	private String excelSheetName = ExcelReaderSlot.SLOT_INPUT_SHEET_NAME;
+	
+	public void setExcelSheetName(String sheetName) {
+		this.excelSheetName = sheetName;
+	}
+	
 	// 게임 진행 스레드 수
 	private int threadCountInput = -1;
 	// 게임 진행 횟수
@@ -76,7 +82,7 @@ public class SlotSimulator {
 		if(filePath.endsWith(".json")) {
 			param = SlotGameSetting.readFromJson(file);
 		} else if(filePath.endsWith(".xlsx") || filePath.endsWith(".xls")) {
-			param = SlotGameSetting.readFromExcel(file, ExcelReaderSlot.SLOT_INPUT_SHEET_NAME);
+			param = SlotGameSetting.readFromExcel(file, excelSheetName);
 			log.info(">>>>>>>>>>>> excel parsing");
 		}
 		
@@ -146,6 +152,9 @@ public class SlotSimulator {
 		log.info(" >>> time duration = {} ms", SlotUtils.getBigNumberFormat(endTime - startTime)); 
 		log.info(" >>> slot simulator end !!");
 	}
+	
+	
+	
 	
 	/**
 	 * Task 

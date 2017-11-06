@@ -29,6 +29,7 @@ public class SlotGameTestExcel {
 	private void commonTest(String excelFilePath, double payoutExpected, double maxDiff) throws Exception {
 		SlotSimulator slotSimulator = new SlotSimulator(excelFilePath);
 		slotSimulator.setPayoutExpected(payoutExpected);
+		slotSimulator.setExcelSheetName("slot_input_3v3"); //test
 		slotSimulator.startWithThread();
 		
 		Assert.assertTrue( slotSimulator.getDifference() < maxDiff );
