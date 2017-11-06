@@ -1,35 +1,6 @@
 {
   "reelCount" : 4,
   "reelCountArray" : [ 3, 3, 3, 3 ],
-  "betPerLine" : 1,
-  "normalSymbolList" : [ "N1", "N2", "N3" ],
-  "otherSymbolList" : [ "WD", "SS" ],
-  "reelCompositionParamList" : [ {
-    "SS" : 1,
-    "WD" : 1,
-    "N1" : 10,
-    "N2" : 10,
-    "N3" : 10
-  }, {
-  	"SS" : 1,
-    "WD" : 1,
-    "N1" : 10,
-    "N2" : 10,
-    "N3" : 10
-  },{
-    "SS" : 1,
-    "WD" : 1,
-    "N1" : 10,
-    "N2" : 10,
-    "N3" : 10
-  },{
-    "SS" : 1,
-    "WD" : 1,
-    "N1" : 10,
-    "N2" : 10,
-    "N3" : 10
-  }],
-  "linePatternList" : [ [ 1, 1, 1, 1] ],
   "payoutTableRuleParamList" : [{
     "symbol" : "SS",
     "symbolType" : "S",
@@ -60,5 +31,31 @@
     "rule" : {
       "4" : 200
     }
-  }]
+  }],
+  "reelCompositionParamList" : [ {
+    "SS" : 1,
+    "WD" : 1,
+    "N1" : 10,
+    "N2" : 10,
+    "N3" : 10
+  }, {
+  	"SS" : 1,
+    "WD" : 1,
+    "N1" : 10,
+    "N2" : 10,
+    "N3" : 10
+  },{
+    "SS" : 1,
+    "WD" : 1,
+    "N1" : 10,
+    "N2" : 10,
+    "N3" : 10
+  },{
+    "SS" : 1,
+    "WD" : 1,
+    "N1" : 10,
+    "N2" : 10,
+    "N3" : 10
+  }],
+  "linePatternList" : [ [ 1, 1, 1, 1] ]
 }

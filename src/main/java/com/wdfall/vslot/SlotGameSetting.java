@@ -27,13 +27,18 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SlotGameSetting {
 
+	// ==== inputs ====
 	// reel 총 개수 
 	private int reelCount;
 	// reel 당 개수
 	private int[] reelCountArray;
-	//line별 bet
-	private int betPerLine; 
 		
+	
+	// payout table
+	private List<PayoutTableRule> payoutTableRuleList;
+	// payout scatter
+	private PayoutTableRuleScatter payoutTableRuleScatter;
+	
 	// 사용할 symbol 
 	private List<String> normalSymbolList;
 	// 사용할 기타 symbol
@@ -41,14 +46,16 @@ public class SlotGameSetting {
 	// 사용할 symbol 
 	private List<String> symbolList;
 	
+	
 	// reel symbol 구성
 	private List<List<String>> reelCompositionList;
 	// win pattern
 	private List<List<Integer>> linePatternList;
-	// payout table
-	private List<PayoutTableRule> payoutTableRuleList;
-	// payout scatter
-	private PayoutTableRuleScatter payoutTableRuleScatter;
+	
+	
+	// ==== finals ====
+	//line별 bet
+	private final int betPerLine = 1; 
 	
 	public boolean isScatterExist() {
 		return (payoutTableRuleScatter != null);
@@ -97,26 +104,10 @@ public class SlotGameSetting {
 		// reel 당 개수
 		reelCountArray = param.getReelCountArray();
 		
-		//bet
-		betPerLine = param.getBetPerLine();
-		
 		// >> 사용할 symbol
-		normalSymbolList = param.getNormalSymbolList();
-		
-		otherSymbolList = param.getOtherSymbolList();
-		
-		generateSymbolList();
-		
-		// >> 2. reel symbol 구성
-		reelCompositionList = new ArrayList<List<String>>();
-		List<Map<String, Integer>> reelCompositionParamList = param.getReelCompositionParamList();
-		//reel1, ... reel5
-		for(Map<String, Integer> symbolParam : reelCompositionParamList) {
-			reelCompositionList.add(generateReelComposition(symbolParam));
-		}
-		
-		// >> 3. line pattern
-		linePatternList = param.getLinePatternList(); 
+		normalSymbolList = new ArrayList<>();
+		otherSymbolList = new ArrayList<>();
+		symbolList = new ArrayList<>();
 		
 		// >> 4. payout table
 		// HA * 3 = 10; 4=100; 5=200;
@@ -127,11 +118,15 @@ public class SlotGameSetting {
 		List<PayoutTableRuleParam> payoutTableRuleNormalParamList = new ArrayList<>();
 		List<PayoutTableRuleParam> payoutTableRuleOtherParamList = new ArrayList<>();
 		for(PayoutTableRuleParam ruleParam : payoutTableRuleParamList) {
+			String symbol = ruleParam.getSymbol();
 			if(PayoutTableRuleParam.SYMBOL_TYPE_NORMAL.equals(ruleParam.getSymbolType())) {
 				payoutTableRuleNormalParamList.add(ruleParam);
+				normalSymbolList.add(symbol);
 			} else {
 				payoutTableRuleOtherParamList.add(ruleParam);
+				otherSymbolList.add(symbol);
 			}
+			symbolList.add(symbol);
 		}
 		
 		// normal symbol
@@ -154,12 +149,19 @@ public class SlotGameSetting {
 				payoutTableRuleScatter = new PayoutTableRuleScatterSymbol(ruleParam.getSymbol(), ruleParam.getRule());
 			}
 		}
-	}
-	
-	private void generateSymbolList() {
-		symbolList = new ArrayList<>();
-		symbolList.addAll(normalSymbolList);
-		symbolList.addAll(otherSymbolList);
+		
+		
+		// >> 2. reel symbol 구성
+		reelCompositionList = new ArrayList<List<String>>();
+		List<Map<String, Integer>> reelCompositionParamList = param.getReelCompositionParamList();
+		//reel1, ... reel5
+		for(Map<String, Integer> symbolParam : reelCompositionParamList) {
+			reelCompositionList.add(generateReelComposition(symbolParam));
+		}
+		
+		// >> 3. line pattern
+		linePatternList = param.getLinePatternList(); 
+		
 	}
 	
 	private List<String> generateReelComposition(Map<String, Integer> symbolParam) {

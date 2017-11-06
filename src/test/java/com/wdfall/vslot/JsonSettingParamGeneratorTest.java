@@ -31,27 +31,6 @@ public class JsonSettingParamGeneratorTest {
 		SlotGameSettingParam param = new SlotGameSettingParam();
 		param.setReelCount(3);
 		param.setReelCountArray(new int[]{3,3,3});
-		param.setBetPerLine(1);
-		param.setNormalSymbolList(Arrays.asList("N1","N2","N3"));
-		param.setOtherSymbolList(Arrays.asList("WD", "SS"));
-		
-		Map<String, Integer> symbolParam = new HashMap<>();
-		symbolParam.put("SS", 1);
-		symbolParam.put("WD", 1);
-		symbolParam.put("N1", 10);
-		symbolParam.put("N2", 10);
-		symbolParam.put("N3", 10);
-		List<Map<String, Integer>> reelCompositionParamList = new ArrayList<>();
-		reelCompositionParamList.add(symbolParam);
-		reelCompositionParamList.add(symbolParam);
-		reelCompositionParamList.add(symbolParam);
-		reelCompositionParamList.add(symbolParam);
-		reelCompositionParamList.add(symbolParam);
-		param.setReelCompositionParamList(reelCompositionParamList);
-		
-		List<List<Integer>> winPatternList = new ArrayList<>();
-		winPatternList.add(Arrays.asList(1,1,1));
-		param.setLinePatternList(winPatternList);
 		
 		List<PayoutTableRuleParam> payoutTableRuleNormalParamList = new ArrayList<>();
 
@@ -96,6 +75,25 @@ public class JsonSettingParamGeneratorTest {
 		payoutTableRuleNormalParamList.add(rp3);
 		
 		param.setPayoutTableRuleParamList(payoutTableRuleNormalParamList); 
+		
+		//
+		Map<String, Integer> symbolParam = new HashMap<>();
+		symbolParam.put("SS", 1);
+		symbolParam.put("WD", 1);
+		symbolParam.put("N1", 10);
+		symbolParam.put("N2", 10);
+		symbolParam.put("N3", 10);
+		List<Map<String, Integer>> reelCompositionParamList = new ArrayList<>();
+		reelCompositionParamList.add(symbolParam);
+		reelCompositionParamList.add(symbolParam);
+		reelCompositionParamList.add(symbolParam);
+		reelCompositionParamList.add(symbolParam);
+		reelCompositionParamList.add(symbolParam);
+		param.setReelCompositionParamList(reelCompositionParamList);
+		
+		List<List<Integer>> winPatternList = new ArrayList<>();
+		winPatternList.add(Arrays.asList(1,1,1));
+		param.setLinePatternList(winPatternList);
 		
 		String json = JsonBuilder.objectToJson(param);
 		log.debug("json = \r\n {}", json);

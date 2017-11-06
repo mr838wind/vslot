@@ -7,22 +7,32 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.wdfall.vslot.json.SlotGameSettingParam;
 import com.wdfall.vslot.utils.CloneUtils;
 
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class CopyTest {
 
+	@Data
+	private static class CopyTestItem {
+		private int reelCount;
+		private List<String> normalSymbolList;
+		
+		public CopyTestItem copy() {
+			return CloneUtils.deepCopyByLib(this);
+		}
+	}
+	
 	@Test
 	public void test() {
-		SlotGameSettingParam param1 = new SlotGameSettingParam();
+		CopyTestItem param1 = new CopyTestItem();
 		param1.setReelCount(5);
 		List<String> nsList = new ArrayList<>(Arrays.asList("HA","MA"));
 		param1.setNormalSymbolList(nsList);
 		
-		SlotGameSettingParam param2 = param1.copy();
+		CopyTestItem param2 = param1.copy();
 		param2.setReelCount(6);
 		param2.getNormalSymbolList().set(0, "WD");
 		
@@ -36,12 +46,12 @@ public class CopyTest {
 	@Test
 	public void testDeepCopy() {
 		
-		SlotGameSettingParam param1 = new SlotGameSettingParam();
+		CopyTestItem param1 = new CopyTestItem();
 		param1.setReelCount(5);
 		List<String> nsList = new ArrayList<>(Arrays.asList("HA","MA"));
 		param1.setNormalSymbolList(nsList);
 		
-		SlotGameSettingParam param2 = CloneUtils.deepCopyByLib(param1);
+		CopyTestItem param2 = CloneUtils.deepCopyByLib(param1);
 		param2.setReelCount(6);
 		param2.getNormalSymbolList().set(0, "WD");
 		
