@@ -24,7 +24,6 @@ public class ParseDataItemDummDefine extends ParseDataItemTemplate {
 
 	@Override
 	protected void handleExcelData() {
-		log.info("parsedDataList = {}", parsedDataList);
 		reelList1 = parsedDataList.get(0);
 		
 		log.info("reelList1 = {}", reelList1);

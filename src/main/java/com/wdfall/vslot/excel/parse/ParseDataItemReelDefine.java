@@ -41,7 +41,7 @@ public class ParseDataItemReelDefine extends ParseDataItemTemplate {
 		
 		slotGameSettingParam.setReelCompositionParamList(reelCompositionParamList);
 		
-		log.info("{}", reelCompositionParamList);
+		log.info("reelCompositionParamList = {}", reelCompositionParamList);
 	}
 	
 	private Map<String, Integer> generateReelCompositionMap(List<String> symbolIdList, List<String> reelList) {

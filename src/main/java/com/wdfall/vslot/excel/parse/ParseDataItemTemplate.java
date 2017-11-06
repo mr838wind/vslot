@@ -34,13 +34,13 @@ public abstract class ParseDataItemTemplate {
 		
 		// 1.1 loc
 		loc = ExcelUtils.findParamItem(excelData, inputSymbol);
-		log.info("loc = {}", loc);
+		log.debug("loc = {}", loc);
 		
 		trimLocation();
 		
 		// 1.2 dataLoc
 		dataLoc = loc.getDataLocationDefault();
-		log.info("dataLoc = {}", dataLoc);
+		log.debug("dataLoc = {}", dataLoc);
 		
 		// 2. headerLine
 		headerLine = ExcelUtils.readExcelDataHorizontal(excelData, loc, loc.getRowIndexStart());
@@ -53,6 +53,7 @@ public abstract class ParseDataItemTemplate {
 			List<String> value = ExcelUtils.readExcelDataVertical(excelData, dataLoc, cellIndex);
 			parsedDataList.add(value);
 		}
+		log.debug("parsedDataList = {}", parsedDataList);
 		
 		// 4. handle
 		handleExcelData();
