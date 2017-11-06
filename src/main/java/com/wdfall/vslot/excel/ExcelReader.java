@@ -120,9 +120,9 @@ public abstract class ExcelReader {
 	}
 	
 	private void logData(List<List<String>> excelData) {
-		log.info(">>>> excelData.size = {}", excelData.size()); 
+		log.debug(">>>> excelData.size = {}", excelData.size()); 
 		for(List<String> item : excelData) {
-			log.info("{}", item);
+			log.debug("{}", item);
 		}
 	}
     

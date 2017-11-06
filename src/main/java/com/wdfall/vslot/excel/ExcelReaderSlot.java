@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ExcelReaderSlot extends ExcelReader {
 
 	private SlotGameSettingParam slotGameSettingParam;
+	private List<String> reelList1;
 	
 	public ExcelReaderSlot() {
 		
@@ -25,16 +26,24 @@ public class ExcelReaderSlot extends ExcelReader {
 		slotGameSettingParam = new SlotGameSettingParam();
 		
 		//1.  {{reel-define}}
-		//new ParseDataItemReelDefine(excelData, slotGameSettingParam).parseVertical();
+		ParseDataItemReelDefine reelDefine = new ParseDataItemReelDefine(excelData, "reel-define", slotGameSettingParam);
+		reelDefine.parseVertical();
 		
 		//2.  {{dumm-define}}
-		new ParseDataItemDummDefine(excelData).parseVertical();
-		
+		ParseDataItemDummDefine dummDefine = new ParseDataItemDummDefine(excelData, "dumm-define");
+		dummDefine.parseVertical();
+		reelList1 = dummDefine.getReelList1();
 	}
-
+	
+	
 	public SlotGameSettingParam getSlotGameSettingParam() {
 		return slotGameSettingParam;
 	}
+
+	public List<String> getReelList1() {
+		return reelList1;
+	}
+	
 	
 	public static void main(String[] args) throws Exception { 
 		File excelUploadFile = FileUtil.getFileOnClasspath("vslot_input.xlsx");

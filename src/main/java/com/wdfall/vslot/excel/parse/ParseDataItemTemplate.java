@@ -1,5 +1,6 @@
 package com.wdfall.vslot.excel.parse;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,13 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public abstract class ParseDataItemTemplate {
-	
-	public ParseDataItemTemplate(List<List<String>> excelData, String inputSymbol) {
-		super();
-		this.excelData = excelData;
-		this.inputSymbol = inputSymbol;
-	}
-	
+
 	// input
 	protected List<List<String>> excelData;
 	protected String inputSymbol;
@@ -25,37 +20,46 @@ public abstract class ParseDataItemTemplate {
 	// var
 	protected ParamItemLocation loc;
 	protected ParamItemLocation dataLoc;
+	//
+	protected List<String> headerLine;
+	protected List<List<String>> parsedDataList;
 	
-	protected List<String> headerList;
-	
-	protected Map<String, List<String>> excelDataMap;
-	
-	
+	public ParseDataItemTemplate(List<List<String>> excelData, String inputSymbol) {
+		super();
+		this.excelData = excelData;
+		this.inputSymbol = inputSymbol;
+	}
+
 	public final void parseVertical() {
+		
 		// 1.1 loc
 		loc = ExcelUtils.findParamItem(excelData, inputSymbol);
 		log.info("loc = {}", loc);
+		
 		trimLocation();
 		
 		// 1.2 dataLoc
 		dataLoc = loc.getDataLocationDefault();
 		log.info("dataLoc = {}", dataLoc);
 		
-		headerList = ExcelUtils.readExcelDataHorizontal(excelData, loc, loc.getRowIndexStart());
-		log.info("headerList = {}", headerList); 
+		// 2. headerLine
+		headerLine = ExcelUtils.readExcelDataHorizontal(excelData, loc, loc.getRowIndexStart());
+		log.info("headerLine = {}", headerLine); 
 		
-		excelDataMap = new HashMap<>();
-		for(int cellIndex= dataLoc.getCellIndexStart(); cellIndex<dataLoc.getCellIndexEnd(); cellIndex++ ) {
-			List<String> dataList = ExcelUtils.readExcelDataVertical(excelData, dataLoc, cellIndex);
-			String key = headerList.get(cellIndex - dataLoc.getCellIndexStart());
-			excelDataMap.put(key, dataList);
+		// 3. data
+		parsedDataList = new ArrayList<List<String>>();
+		for(int offset=0; offset<headerLine.size(); offset++) {
+			int cellIndex = dataLoc.getCellIndexStart() + offset;
+			List<String> value = ExcelUtils.readExcelDataVertical(excelData, dataLoc, cellIndex);
+			parsedDataList.add(value);
 		}
 		
-		handleExcelDataMap();
-		
+		// 4. handle
+		handleExcelData();
 	}
 
 	protected abstract void trimLocation();
-	protected abstract void handleExcelDataMap();
+	
+	protected abstract void handleExcelData();
 	
 }

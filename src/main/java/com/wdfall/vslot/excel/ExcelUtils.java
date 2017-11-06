@@ -6,7 +6,9 @@ import java.util.List;
 import com.wdfall.vslot.utils.CloneUtils;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class ExcelUtils {
 
 	@Data
@@ -37,29 +39,6 @@ public class ExcelUtils {
 			return dataLoc;
 		}
 		
-	}
-	
-	
-	public static List<String> readExcelDataVertical(List<List<String>> excelData, ParamItemLocation dataLoc, int cellIndex) {
-		int rowIndexStart = dataLoc.getRowIndexStart();
-		int rowIndexEnd = dataLoc.getRowIndexEnd();
-		List<String> dataList = new ArrayList<>();
-		for(int i=rowIndexStart; i<rowIndexEnd; i++) {
-			String data = excelData.get(i).get(cellIndex);
-			dataList.add(data);
-		}
-		return dataList;
-	}
-	
-	public static List<String> readExcelDataHorizontal(List<List<String>> excelData, ParamItemLocation dataLoc, int rowIndex) {
-		int cellIndexStart = dataLoc.getCellIndexStart();
-		int cellIndexEnd = dataLoc.getCellIndexEnd();
-		List<String> dataList = new ArrayList<>();
-		for(int i=cellIndexStart; i<cellIndexEnd; i++) {
-			String data = excelData.get(rowIndex).get(i);
-			dataList.add(data);
-		}
-		return dataList;
 	}
 	
 	
@@ -104,22 +83,51 @@ public class ExcelUtils {
 		//
 		findParamItemSetCellIndexEnd(excelData, result);
 		
+		log.debug("findParamItem = {}", result);
+		
 		return result;
 	}
-	
-	private static void findParamItemSetCellIndexEnd(List<List<String>> excelData, ParamItemLocation result) {
+
+	public static void findParamItemSetCellIndexEnd(List<List<String>> excelData, ParamItemLocation result) {
 		List<String> headerList = excelData.get(result.getRowIndexStart());
-		int lastCellOffset = headerList.size();
-		for(int i=0; i<headerList.size(); i++) {
-			String item = headerList.get(i);
+		
+		int firstNonNullCellIndex = -1;
+		int cellStart = result.getCellIndexStart();
+		int cellEnd = headerList.size();
+		for(int cellIndex=cellStart; cellIndex<cellEnd; cellIndex++) {
+			String item = headerList.get(cellIndex);
 			if(item == null) {
-				lastCellOffset = i;
+				firstNonNullCellIndex = cellIndex;
 				break;
 			}
 		}
-		int lastCellIndex = lastCellOffset + result.getCellIndexStart();
-		result.setCellIndexEnd(lastCellIndex);
+		if(firstNonNullCellIndex == -1) {
+			firstNonNullCellIndex = cellEnd;
+		}
+		
+		result.setCellIndexEnd(firstNonNullCellIndex);
 	}
 	
+	public static List<String> readExcelDataVertical(List<List<String>> excelData, ParamItemLocation dataLoc, int cellIndex) {
+		int rowIndexStart = dataLoc.getRowIndexStart();
+		int rowIndexEnd = dataLoc.getRowIndexEnd();
+		List<String> dataList = new ArrayList<>();
+		for(int i=rowIndexStart; i<rowIndexEnd; i++) {
+			String data = excelData.get(i).get(cellIndex);
+			dataList.add(data);
+		}
+		return dataList;
+	}
 	
+	public static List<String> readExcelDataHorizontal(List<List<String>> excelData, ParamItemLocation dataLoc, int rowIndex) {
+		int cellIndexStart = dataLoc.getCellIndexStart();
+		int cellIndexEnd = dataLoc.getCellIndexEnd();
+		List<String> dataList = new ArrayList<>();
+		for(int i=cellIndexStart; i<cellIndexEnd; i++) {
+			String data = excelData.get(rowIndex).get(i);
+			dataList.add(data);
+		}
+		return dataList;
+	}
+
 }
