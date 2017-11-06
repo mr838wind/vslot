@@ -14,8 +14,8 @@ public class ParseDataItemReelCompositionParam extends ParseDataItemTemplate {
 	
 	private SlotGameSettingParam slotGameSettingParam;
 
-	public ParseDataItemReelCompositionParam(List<List<String>> excelData, String inputSymbol, SlotGameSettingParam slotGameSettingParam) {
-		super(excelData, inputSymbol);
+	public ParseDataItemReelCompositionParam(List<List<String>> excelData, SlotGameSettingParam slotGameSettingParam) {
+		super(excelData, "reelCompositionParamList");
 		this.slotGameSettingParam = slotGameSettingParam;
 	}
 

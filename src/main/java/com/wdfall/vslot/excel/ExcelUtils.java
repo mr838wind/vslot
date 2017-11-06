@@ -1,7 +1,10 @@
 package com.wdfall.vslot.excel;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
+import org.apache.poi.ss.formula.functions.T;
 
 import com.wdfall.vslot.utils.CloneUtils;
 
@@ -152,5 +155,5 @@ public class ExcelUtils {
 		}
 		return result;
 	}
-
+	
 }

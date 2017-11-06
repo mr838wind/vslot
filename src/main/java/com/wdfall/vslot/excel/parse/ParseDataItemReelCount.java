@@ -12,8 +12,8 @@ public class ParseDataItemReelCount extends ParseDataItemTemplate {
 	
 	private SlotGameSettingParam slotGameSettingParam;
 
-	public ParseDataItemReelCount(List<List<String>> excelData, String inputSymbol, SlotGameSettingParam slotGameSettingParam) {
-		super(excelData, inputSymbol);
+	public ParseDataItemReelCount(List<List<String>> excelData, SlotGameSettingParam slotGameSettingParam) {
+		super(excelData, "reelCount");
 		this.slotGameSettingParam = slotGameSettingParam;
 	}
 

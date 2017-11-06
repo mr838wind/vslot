@@ -8,6 +8,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import com.wdfall.vslot.excel.ExcelReaderSlot;
 import com.wdfall.vslot.json.SlotGameSettingParam;
 import com.wdfall.vslot.utils.FileUtil;
 import com.wdfall.vslot.utils.SlotUtils;
@@ -21,16 +22,17 @@ public class SlotSimulator {
 	 * main
 	 */
 	public static void main(String[] args) throws Exception {
-		String jsonFilePath = "slot_game_setting_param.json";
+		//String filePath = "slot_game_setting_param.json";
+		String filePathExcel = "vslot_input_main.xlsx";
 		double payoutExpected = 0.0;
 		//
-		SlotSimulator slotSimulator = new SlotSimulator(jsonFilePath);
+		SlotSimulator slotSimulator = new SlotSimulator(filePathExcel);
 		slotSimulator.setPayoutExpected(payoutExpected); // for test
 		slotSimulator.startWithThread();
 	}
 
 	// setting file path 
-	private String jsonFilePath = "slot_game_setting_param.json";
+	private String filePath;
 	// 게임 진행 스레드 수
 	private int threadCountInput = -1;
 	// 게임 진행 횟수
@@ -57,21 +59,26 @@ public class SlotSimulator {
 	}
 	// ====================== ]]test =======================
 	
-	public SlotSimulator(String jsonFilePath) {
+	public SlotSimulator(String filePath) {
 		super();
-		this.jsonFilePath = jsonFilePath;
+		this.filePath = filePath;
 	}
 	
 	public SlotSimulator(String jsonFilePath, int threadCountInput, long gameRunCountInput) {
 		super();
-		this.jsonFilePath = jsonFilePath;
+		this.filePath = jsonFilePath;
 		this.threadCountInput = threadCountInput;
 		this.gameRunCountInput = gameRunCountInput;
 	}
 	
 	private void initParam() {
-		File jsonFile = FileUtil.getFileOnClasspath(jsonFilePath); 
-		param = SlotGameSetting.readFromJson(jsonFile);
+		File file = FileUtil.getFileOnClasspath(filePath);
+		if(filePath.endsWith(".json")) {
+			param = SlotGameSetting.readFromJson(file);
+		} else if(filePath.endsWith(".xlsx") || filePath.endsWith(".xls")) {
+			param = SlotGameSetting.readFromExcel(file, ExcelReaderSlot.SLOT_INPUT_SHEET_NAME);
+			log.info(">>>>>>>>>>>> excel parsing");
+		}
 		
 		// constructor 입력된것이  우선
 		if(this.threadCountInput != -1 ) {

@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections.CollectionUtils;
+
+import com.wdfall.vslot.excel.ExcelReaderSlot;
 import com.wdfall.vslot.json.SlotGameSettingParam;
 import com.wdfall.vslot.json.SlotGameSettingParam.PayoutTableRuleParam;
 import com.wdfall.vslot.payout.PayoutTableRule;
@@ -63,6 +66,7 @@ public class SlotGameSetting {
 	//line별 bet
 	private final int betPerLine = 1; 
 	
+	
 	public boolean isScatterExist() {
 		return (payoutTableRuleScatter != null);
 	}
@@ -73,6 +77,16 @@ public class SlotGameSetting {
 	}
 	
 	public void validate() {
+		boolean isNull = (threadCount <= 0) || (gameRunCount <= 0)
+				|| (reelCount <= 0) || (reelCountArray == null || reelCountArray.length == 0)
+				|| CollectionUtils.isEmpty(payoutTableRuleList)
+				|| CollectionUtils.isEmpty(reelCompositionList)
+				|| CollectionUtils.isEmpty(linePatternList)
+				;
+		if(isNull) {
+			throw new IllegalArgumentException("validate null");
+		}
+		
 		if(reelCountArray.length != reelCount) {
 			throw new IllegalArgumentException("reelCountArray != reelCount");
 		}
@@ -85,10 +99,20 @@ public class SlotGameSetting {
 		}
 	}
 
-	public void initFromExcel() {
-		//TODO ...
+	public void initFromExcel(File excelFile, String sheetName) {
+		SlotGameSettingParam param = readFromExcel(excelFile, sheetName);
+		
+		initFromParam(param);
 	}
 	
+	public static SlotGameSettingParam readFromExcel(File excelFile, String sheetName) {
+		ExcelReaderSlot excelReaderSlot = new ExcelReaderSlot();
+		excelReaderSlot.processSheetData(excelFile, sheetName);
+		SlotGameSettingParam settingParam = excelReaderSlot.getSlotGameSettingParam();
+		return settingParam;
+	}
+
+
 	public void initFromJson(File jsonFile) {
 		SlotGameSettingParam param = readFromJson(jsonFile); 
 		

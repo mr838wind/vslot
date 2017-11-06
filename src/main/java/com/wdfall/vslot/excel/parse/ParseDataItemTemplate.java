@@ -1,9 +1,7 @@
 package com.wdfall.vslot.excel.parse;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.wdfall.vslot.excel.ExcelUtils;
 import com.wdfall.vslot.excel.ExcelUtils.ParamItemLocation;
@@ -44,7 +42,7 @@ public abstract class ParseDataItemTemplate {
 		
 		// 2. headerLine
 		headerLine = ExcelUtils.readExcelDataHorizontal(excelData, loc, loc.getRowIndexStart());
-		log.info("headerLine = {}", headerLine); 
+		log.debug("headerLine = {}", headerLine);
 		
 		// 3. data
 		parsedDataList = new ArrayList<List<String>>();

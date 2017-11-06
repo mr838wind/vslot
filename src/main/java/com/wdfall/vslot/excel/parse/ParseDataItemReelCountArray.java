@@ -1,6 +1,5 @@
 package com.wdfall.vslot.excel.parse;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.wdfall.vslot.excel.ExcelUtils;
@@ -13,8 +12,8 @@ public class ParseDataItemReelCountArray extends ParseDataItemTemplate {
 	
 	private SlotGameSettingParam slotGameSettingParam;
 
-	public ParseDataItemReelCountArray(List<List<String>> excelData, String inputSymbol, SlotGameSettingParam slotGameSettingParam) {
-		super(excelData, inputSymbol);
+	public ParseDataItemReelCountArray(List<List<String>> excelData, SlotGameSettingParam slotGameSettingParam) {
+		super(excelData, "reelCountArray");
 		this.slotGameSettingParam = slotGameSettingParam;
 	}
 

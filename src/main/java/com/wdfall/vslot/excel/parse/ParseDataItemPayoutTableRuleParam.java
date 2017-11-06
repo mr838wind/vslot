@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.codec.binary.StringUtils;
-
 import com.wdfall.vslot.excel.ExcelUtils;
 import com.wdfall.vslot.json.SlotGameSettingParam;
 import com.wdfall.vslot.json.SlotGameSettingParam.PayoutTableRuleParam;
@@ -18,8 +16,8 @@ public class ParseDataItemPayoutTableRuleParam extends ParseDataItemTemplate {
 	
 	private SlotGameSettingParam slotGameSettingParam;
 
-	public ParseDataItemPayoutTableRuleParam(List<List<String>> excelData, String inputSymbol, SlotGameSettingParam slotGameSettingParam) {
-		super(excelData, inputSymbol);
+	public ParseDataItemPayoutTableRuleParam(List<List<String>> excelData, SlotGameSettingParam slotGameSettingParam) {
+		super(excelData, "payoutTableRuleParamList");
 		this.slotGameSettingParam = slotGameSettingParam;
 	}
 

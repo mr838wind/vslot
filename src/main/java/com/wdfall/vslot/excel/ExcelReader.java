@@ -29,11 +29,16 @@ public abstract class ExcelReader {
 		private String sheetName;
 	}
 
-	public final void processSheetData(File excelUploadFile, String sheetName) throws Exception {
-		SheetInput sheetInput = new SheetInput();
-		sheetInput.setByIndex(false);
-		sheetInput.setSheetName(sheetName); 
-		processSheetDataMain(excelUploadFile, sheetInput);
+	public final void processSheetData(File excelUploadFile, String sheetName) {
+		try {
+			SheetInput sheetInput = new SheetInput();
+			sheetInput.setByIndex(false);
+			sheetInput.setSheetName(sheetName); 
+			processSheetDataMain(excelUploadFile, sheetInput);
+		} catch (Exception e) {
+			log.error("",e); 
+			throw new RuntimeException("excel reader exception", e);
+		}
 	}
 	
 	/**

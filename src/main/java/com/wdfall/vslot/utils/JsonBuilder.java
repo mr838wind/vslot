@@ -30,7 +30,7 @@ public class JsonBuilder {
 		} catch (IOException e) {
 			log.error("",e);
 			jsonInString = "";
-			throw new RuntimeException(e);
+			throw new RuntimeException("objectToJson exception", e);
 		}
 		return jsonInString;
 	}
@@ -47,7 +47,7 @@ public class JsonBuilder {
 			result = mapper.readValue(json, clazz);
 		} catch (Exception e) {
 			log.error("",e);
-			throw new RuntimeException(e);
+			throw new RuntimeException("jsonToObject exception", e);
 		}
 		return result;
 	}
