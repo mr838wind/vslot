@@ -26,6 +26,12 @@ import lombok.extern.slf4j.Slf4j;
 @Data
 @Slf4j
 public class SlotGameSetting {
+	
+	// 게임 진행 스레드 수
+	private int threadCount;
+
+	// 게임 진행 횟수
+	private long gameRunCount;
 
 	// ==== inputs ====
 	// reel 총 개수 
@@ -98,6 +104,10 @@ public class SlotGameSetting {
 	}
 
 	public void initFromParam(SlotGameSettingParam param) {
+		// simulator setting
+		threadCount = param.getThreadCount();
+		gameRunCount = param.getGameRunCount();
+		
 		// >> 1. reel 구성
 		// reel 총 개수
 		reelCount = param.getReelCount();

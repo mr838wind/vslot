@@ -13,7 +13,14 @@ import lombok.Data;
  */
 @Data
 public class SlotGameSettingParam {
+	
+	// 게임 진행 스레드 수
+	private int threadCount = 1;
 
+	// 게임 진행 횟수
+	private long gameRunCount = 1000*1000;
+	
+	//===========================================================
 	// reel 총 개수
 	private int reelCount;
 	// reel 당 개수
@@ -27,6 +34,8 @@ public class SlotGameSettingParam {
 
 	// line pattern
 	private List<List<Integer>> linePatternList;
+	
+	//===========================================================
 	
 	// copy
 	public SlotGameSettingParam copy() {

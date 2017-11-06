@@ -29,6 +29,9 @@ public class JsonSettingParamGeneratorTest {
 	
 	public void writeSettingParamJson() {
 		SlotGameSettingParam param = new SlotGameSettingParam();
+		param.setThreadCount(1);
+		param.setGameRunCount(1000*1000);
+		
 		param.setReelCount(3);
 		param.setReelCountArray(new int[]{3,3,3});
 		

@@ -22,11 +22,9 @@ public class SlotSimulator {
 	 */
 	public static void main(String[] args) throws Exception {
 		String jsonFilePath = "slot_game_setting_param.json";
-		int threadCount = 1;
-		long gameRunCount = 1*1000*1000; // 1000 * 1000
 		double payoutExpected = 0.0;
 		//
-		SlotSimulator slotSimulator = new SlotSimulator(jsonFilePath, threadCount, gameRunCount);
+		SlotSimulator slotSimulator = new SlotSimulator(jsonFilePath);
 		slotSimulator.setPayoutExpected(payoutExpected); // for test
 		slotSimulator.startWithThread();
 	}
@@ -34,9 +32,11 @@ public class SlotSimulator {
 	// setting file path 
 	private String jsonFilePath = "slot_game_setting_param.json";
 	// 게임 진행 스레드 수
-	private int threadCount = 1;
+	private int threadCountInput = -1;
 	// 게임 진행 횟수
-	private long gameRunCount = 1*1000*1000;  // 1000 * 1000
+	private long gameRunCountInput = -1; 
+	
+	private SlotGameSettingParam param;
 	
 	// ====================== test =======================
 	private double payoutExpected = 0.0;
@@ -57,11 +57,30 @@ public class SlotSimulator {
 	}
 	// ====================== ]]test =======================
 	
-	public SlotSimulator(String jsonFilePath, int threadCount, long gameRunCount) {
+	public SlotSimulator(String jsonFilePath) {
 		super();
 		this.jsonFilePath = jsonFilePath;
-		this.threadCount = threadCount;
-		this.gameRunCount = gameRunCount;
+	}
+	
+	public SlotSimulator(String jsonFilePath, int threadCountInput, long gameRunCountInput) {
+		super();
+		this.jsonFilePath = jsonFilePath;
+		this.threadCountInput = threadCountInput;
+		this.gameRunCountInput = gameRunCountInput;
+	}
+	
+	private void initParam() {
+		File jsonFile = FileUtil.getFileOnClasspath(jsonFilePath); 
+		param = SlotGameSetting.readFromJson(jsonFile);
+		
+		// constructor 입력된것이  우선
+		if(this.threadCountInput != -1 ) {
+			param.setThreadCount(this.threadCountInput);
+		}
+		if(this.threadCountInput != -1 ) {
+			param.setGameRunCount(this.gameRunCountInput); 
+		}
+		
 	}
 
 	/**
@@ -73,13 +92,12 @@ public class SlotSimulator {
 		log.info(" >>> startWithThread !!");
 		long startTime = System.currentTimeMillis();
 		
-		File jsonFile = FileUtil.getFileOnClasspath(jsonFilePath); 
-		SlotGameSettingParam param = SlotGameSetting.readFromJson(jsonFile);
+		initParam();
 		
-		ExecutorService executorService = Executors.newFixedThreadPool(threadCount);
+		ExecutorService executorService = Executors.newFixedThreadPool(param.getThreadCount());
 		List<SlotTask> taskList = new ArrayList<>();
-		for(int i=0; i<threadCount; i++) {
-			taskList.add(new SlotTask(param.copy(), gameRunCount));
+		for(int i=0; i<param.getThreadCount(); i++) {
+			taskList.add(new SlotTask(param.copy(), param.getGameRunCount()));
 		}
 		
 		List<Future<SlotGame>> resultList = executorService.invokeAll(taskList);
@@ -105,8 +123,8 @@ public class SlotSimulator {
 		payoutReal = (double)totalWin / totalBet * 100;
 		String payoutPercentageShow = SlotUtils.getPercentFormat( payoutReal );
 		String hitFrequencyShow = SlotUtils.getPercentFormat( (double)totalHit / totalSpin * 100 );
-		log.info(" >>> threadCount : {} ", threadCount);
-		log.info(" >>> gameRunCount : {} ", SlotUtils.getBigNumberFormat(gameRunCount));
+		log.info(" >>> threadCount : {} ", param.getThreadCount());
+		log.info(" >>> gameRunCount : {} ", SlotUtils.getBigNumberFormat(param.getGameRunCount()));
 		log.info(" >>> Payout Percentage : {} % ", payoutPercentageShow);
 		log.info(" >>> Hit Frequency : {} % ", hitFrequencyShow);
 		
@@ -142,7 +160,6 @@ public class SlotSimulator {
 			log.info(" >>> SlotTask {} in Thread {} start ! ", this, Thread.currentThread().getId()); 
 			
 			SlotGameSetting setting = new SlotGameSetting();
-			//setting.init();
 			setting.initFromParam(param); 
 			setting.validate();
 			

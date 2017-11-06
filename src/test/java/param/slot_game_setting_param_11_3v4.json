@@ -1,4 +1,6 @@
 {
+  "threadCount" : 1,
+  "gameRunCount" : 1000000,
   "reelCount" : 4,
   "reelCountArray" : [ 3, 3, 3, 3 ],
   "payoutTableRuleParamList" : [{
