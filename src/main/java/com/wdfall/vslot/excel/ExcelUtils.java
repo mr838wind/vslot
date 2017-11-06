@@ -42,6 +42,12 @@ public class ExcelUtils {
 	}
 	
 	
+	public static int parseInt(String data) {
+		data = data.replaceAll(",", ""); //숫자표현식중","를 제거
+		return (int)(double)Double.valueOf(data);
+	}
+	
+	
 	/**
 	 * <<header포함 데이터 영역 조회>>
 	 * 
@@ -128,6 +134,23 @@ public class ExcelUtils {
 			dataList.add(data);
 		}
 		return dataList;
+	}
+	
+	public static boolean isEmpty(String s) {
+		return ((s == null) || "".equals(s));
+	}
+	
+	public static boolean isEmptyOrZero(String s) {
+		boolean result = false;
+		if(isEmpty(s)) {
+			result = true;
+		} else {
+			int i = parseInt(s);
+			if(i == 0) {
+				result = true;
+			}
+		}
+		return result;
 	}
 
 }

@@ -14,7 +14,7 @@ import com.wdfall.vslot.utils.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class ExcelReaderSlotTest {
+public class ExcelReaderSlotBasicTest {
 
 	@Before
 	public void setUp() {
@@ -23,8 +23,8 @@ public class ExcelReaderSlotTest {
 	
 	@Test
 	public void testExcelReader() throws Exception {
-		File excelUploadFile = FileUtil.getFileOnClasspath("vslot_input.xlsx");
-		ExcelReaderSlot excelReaderSlot = new ExcelReaderSlot();
+		File excelUploadFile = FileUtil.getFileOnClasspath("vslot_input_test.xlsx");
+		ExcelReaderSlotBasic excelReaderSlot = new ExcelReaderSlotBasic();
 		excelReaderSlot.processSheetData(excelUploadFile, ExcelReader.SHEET_0);
 		SlotGameSettingParam settingParam = excelReaderSlot.getSlotGameSettingParam();
 		

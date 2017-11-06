@@ -6,18 +6,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public abstract class ExcelReader {
 	
 	public static final int SHEET_0 = 0;
+	
+	private Workbook wb;
+	
+	@Data
+	private static class SheetInput {
+		private boolean byIndex;
+		private int sheetIndex;
+		private String sheetName;
+	}
 
+	public final void processSheetData(File excelUploadFile, String sheetName) throws Exception {
+		SheetInput sheetInput = new SheetInput();
+		sheetInput.setByIndex(false);
+		sheetInput.setSheetName(sheetName); 
+		processSheetDataMain(excelUploadFile, sheetInput);
+	}
+	
 	/**
 	 * process sheet and return data
 	 * @param excelUploadFile
@@ -26,6 +44,14 @@ public abstract class ExcelReader {
 	 * @throws Exception
 	 */
 	public final void processSheetData(File excelUploadFile, int sheetIndex) throws Exception {
+		SheetInput sheetInput = new SheetInput();
+		sheetInput.setByIndex(true);
+		sheetInput.setSheetIndex(sheetIndex);
+		processSheetDataMain(excelUploadFile, sheetInput);
+	}
+	
+	
+	public final void processSheetDataMain(File excelUploadFile, SheetInput sheetInput) throws Exception {
     	log.info("excel process start !!");
 		
 		if (excelUploadFile == null || !excelUploadFile.exists()) {
@@ -33,11 +59,17 @@ public abstract class ExcelReader {
 		}
 		
 		List<List<String>> excelData = null;
-		Workbook wb = null;
+		wb = null;
 		
 		try {
 			wb = WorkbookFactory.create(excelUploadFile); //엑셀 파일 오픈
-			Sheet sheet = wb.getSheetAt(sheetIndex);
+			
+			Sheet sheet = null;
+			if(sheetInput.isByIndex()) {
+				sheet = wb.getSheetAt(sheetInput.getSheetIndex());
+			} else {
+				sheet = wb.getSheet(sheetInput.getSheetName());
+			}
 			
 			excelData = readSheetData(sheet);
 			
@@ -88,10 +120,14 @@ public abstract class ExcelReader {
 			return null;
 		}
 		
-		// 셀의 타입 따라 받아서 구분지어 받되 한 행을 하나의 스트링으로 저장
-		switch( cell.getCellTypeEnum() ) {
+		// formula 계산된 값을 read 함
+		FormulaEvaluator evaluator = wb.getCreationHelper().createFormulaEvaluator();
+		evaluator.evaluateInCell(cell);
+		
+		// 
+		switch ( cell.getCellTypeEnum() ) {
 		    case STRING:
-		        str = cell.getRichStringCellValue().getString();
+		        str = cell.getStringCellValue();
 		        break;
 
 		    case NUMERIC :
@@ -102,8 +138,9 @@ public abstract class ExcelReader {
 		        str = String.valueOf(cell.getBooleanCellValue());
 		        break;
 
+		     // CELL_TYPE_FORMULA will never happen when using FormulaEvaluator
 		    case FORMULA :
-		        str = String.valueOf(cell.getCellFormula());
+		        //str = String.valueOf(cell.getCellFormula());
 		        break;
 
 		    default:
