@@ -23,11 +23,12 @@ public class SlotGameTestExcel {
 
 	@Test
 	public void testIntegrationBasic() throws Exception {
-		commonTest(EXCEL_FILE_PATH, 145.0805, 1);
+		// using the same setting with slot_game_setting_param_10_basic.json
+		commonTest(EXCEL_FILE_PATH, "slot_input_3v3", 145.0805, 1);
 	}
 
-	private void commonTest(String excelFilePath, double payoutExpected, double maxDiff) throws Exception {
-		SlotSimulator slotSimulator = new SlotSimulator(excelFilePath,  "slot_input_3v3");
+	private void commonTest(String excelFilePath, String sheetName, double payoutExpected, double maxDiff) throws Exception {
+		SlotSimulator slotSimulator = new SlotSimulator(excelFilePath, sheetName);
 		slotSimulator.setPayoutExpected(payoutExpected);
 		slotSimulator.startWithThread();
 		
