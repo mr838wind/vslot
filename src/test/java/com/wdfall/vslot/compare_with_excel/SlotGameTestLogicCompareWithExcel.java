@@ -58,7 +58,9 @@ public abstract class SlotGameTestLogicCompareWithExcel {
 	 */
 	public void testSlot(String JSON_FILE_PATH, double EXPECTED, int THREAD_COUNT, int SPIN_COUNT_PER_GAME) {
 		try {
-			SlotSimulator slotSimulator = new SlotSimulator(JSON_FILE_PATH, THREAD_COUNT, SPIN_COUNT_PER_GAME);
+			SlotSimulator slotSimulator = new SlotSimulator(JSON_FILE_PATH);
+			slotSimulator.setThreadCount(THREAD_COUNT);
+			slotSimulator.setGameRunCount(SPIN_COUNT_PER_GAME); 
 			slotSimulator.setPayoutExpected(EXPECTED);
 			slotSimulator.startWithThread();
 			if(EXPECTED > 0) {

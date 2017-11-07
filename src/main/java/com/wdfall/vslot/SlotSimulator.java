@@ -31,51 +31,36 @@ public class SlotSimulator {
 		slotSimulator.startWithThread();
 	}
 
-	// setting file path 
+	// === 필수입력:
 	private String filePath;
 	private String excelSheetName = ExcelReaderSlot.SHEET_NAME_SLOT_INPUT;
 	
-	public void setExcelSheetName(String sheetName) {
-		this.excelSheetName = sheetName;
-	}
 	
+	// === 선택입력:
 	// 게임 진행 스레드 수
-	private int threadCountInput = -1;
+	private int threadCount = -1;
 	// 게임 진행 횟수
-	private long gameRunCountInput = -1; 
+	private long gameRunCount = -1;
 	
+	
+	// === 변수
 	private SlotGameSettingParam param;
 	
-	// ====================== test =======================
-	private double payoutExpected = 0.0;
 	
-	public void setPayoutExpected(double payoutExpected) {
-		this.payoutExpected = payoutExpected;
-	}
-
-	private double payoutReal;
-	
-	public double getPayoutReal() {
-		return payoutReal;
-	}
-
-	// difference = payoutExpected - payoutReal
-	public double getDifference() {
-		return Math.abs(payoutExpected - payoutReal); 
-	}
-	// ====================== ]]test =======================
-	
+	/**
+	 * using default sheet name: "slot_input"
+	 * @param filePath
+	 */
 	public SlotSimulator(String filePath) {
+		this(filePath, ExcelReaderSlot.SHEET_NAME_SLOT_INPUT);
+	}
+	
+	public SlotSimulator(String filePath, String excelSheetName) {
 		super();
 		this.filePath = filePath;
+		this.excelSheetName = excelSheetName;
 	}
 	
-	public SlotSimulator(String jsonFilePath, int threadCountInput, long gameRunCountInput) {
-		super();
-		this.filePath = jsonFilePath;
-		this.threadCountInput = threadCountInput;
-		this.gameRunCountInput = gameRunCountInput;
-	}
 	
 	private void initParam() {
 		File file = FileUtil.getFileOnClasspath(filePath);
@@ -85,14 +70,13 @@ public class SlotSimulator {
 			param = SlotGameSetting.readFromExcel(file, excelSheetName);
 		}
 		
-		// constructor 입력된것이  우선
-		if(this.threadCountInput != -1 ) {
-			param.setThreadCount(this.threadCountInput);
+		//
+		if(threadCount != -1) {
+			param.setThreadCount(threadCount);
 		}
-		if(this.threadCountInput != -1 ) {
-			param.setGameRunCount(this.gameRunCountInput); 
+		if(gameRunCount != -1) {
+			param.setGameRunCount(gameRunCount);
 		}
-		
 	}
 
 	/**
@@ -154,7 +138,6 @@ public class SlotSimulator {
 	
 	
 	
-	
 	/**
 	 * Task 
 	 * @author chhan
@@ -189,6 +172,42 @@ public class SlotSimulator {
 			return game;
 		}
 	}
+	
+	
+	// ====================== test =======================
+	// === 선택입력: test용
+	private double payoutExpected = 0.0;
+	
+	public void setPayoutExpected(double payoutExpected) {
+		this.payoutExpected = payoutExpected;
+	}
+
+	private double payoutReal;
+	
+	public double getPayoutReal() {
+		return payoutReal;
+	}
+
+	// difference = payoutExpected - payoutReal
+	public double getDifference() {
+		return Math.abs(payoutExpected - payoutReal); 
+	}
+	// ====================== ]]test =======================
+	
+	
+	// get && set 
+	public void setThreadCount(int threadCount) {
+		this.threadCount = threadCount;
+	}
+	
+	public void setGameRunCount(long gameRunCount) {
+		this.gameRunCount = gameRunCount;
+	}
+	
+	public void setExcelSheetName(String sheetName) {
+		this.excelSheetName = sheetName;
+	}
+	
 	
 	
 }
