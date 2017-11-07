@@ -23,9 +23,9 @@ public class ExcelReaderSlotBasicTest {
 	
 	@Test
 	public void testExcelReader() throws Exception {
-		File excelUploadFile = FileUtil.getFileOnClasspath("vslot_input_test.xlsx");
+		File excelUploadFile = FileUtil.getFileOnClasspath("vslot_input_main.xlsx");
 		ExcelReaderSlotBasic excelReaderSlot = new ExcelReaderSlotBasic();
-		excelReaderSlot.processSheetData(excelUploadFile, ExcelReader.SHEET_0);
+		excelReaderSlot.processSheetData(excelUploadFile, "slot_input_prototype");
 		SlotGameSettingParam settingParam = excelReaderSlot.getSlotGameSettingParam();
 		
 		log.info("settingParam = {}", settingParam);

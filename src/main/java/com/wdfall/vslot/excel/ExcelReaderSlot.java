@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ExcelReaderSlot extends ExcelReader {
 
-	public static final String SLOT_INPUT_SHEET_NAME = "slot_input"; 
+	public static final String SHEET_NAME_SLOT_INPUT = "slot_input";
 	private SlotGameSettingParam slotGameSettingParam;
 	
 	public ExcelReaderSlot() {
@@ -53,7 +53,7 @@ public class ExcelReaderSlot extends ExcelReader {
 	public static void main(String[] args) throws Exception { 
 		File excelUploadFile = FileUtil.getFileOnClasspath("vslot_input_main.xlsx");
 		ExcelReaderSlot excelReaderSlot = new ExcelReaderSlot();
-		excelReaderSlot.processSheetData(excelUploadFile, SLOT_INPUT_SHEET_NAME);
+		excelReaderSlot.processSheetData(excelUploadFile, SHEET_NAME_SLOT_INPUT);
 		SlotGameSettingParam settingParam = excelReaderSlot.getSlotGameSettingParam();
 		
 		log.info("settingParam = {}", settingParam); 

@@ -33,7 +33,7 @@ public class SlotSimulator {
 
 	// setting file path 
 	private String filePath;
-	private String excelSheetName = ExcelReaderSlot.SLOT_INPUT_SHEET_NAME;
+	private String excelSheetName = ExcelReaderSlot.SHEET_NAME_SLOT_INPUT;
 	
 	public void setExcelSheetName(String sheetName) {
 		this.excelSheetName = sheetName;
@@ -83,7 +83,6 @@ public class SlotSimulator {
 			param = SlotGameSetting.readFromJson(file);
 		} else if(filePath.endsWith(".xlsx") || filePath.endsWith(".xls")) {
 			param = SlotGameSetting.readFromExcel(file, excelSheetName);
-			log.info(">>>>>>>>>>>> excel parsing");
 		}
 		
 		// constructor 입력된것이  우선
