@@ -28,7 +28,7 @@ public class SlotSimulator {
 		//
 		SlotSimulator slotSimulator = new SlotSimulator(filePathExcel);
 		slotSimulator.setPayoutExpected(payoutExpected); // for test
-		slotSimulator.startWithThread();
+		slotSimulator.startWithThread(SlotGameRegular.class);
 	}
 
 	// === 필수입력:
@@ -83,7 +83,7 @@ public class SlotSimulator {
 	 * simulator start
 	 * @throws Exception
 	 */
-	public void startWithThread() throws Exception {
+	public <T extends SlotGame> void startWithThread(Class<T> clazz) throws Exception {
 		log.info(" >>> slot simulator start !!");
 		log.info(" >>> startWithThread !!");
 		long startTime = System.currentTimeMillis();
@@ -91,9 +91,9 @@ public class SlotSimulator {
 		initParam();
 		
 		ExecutorService executorService = Executors.newFixedThreadPool(param.getThreadCount());
-		List<SlotTask> taskList = new ArrayList<>();
+		List<SlotTask<T>> taskList = new ArrayList<>();
 		for(int i=0; i<param.getThreadCount(); i++) {
-			taskList.add(new SlotTask(param.copy(), param.getGameRunCount()));
+			taskList.add(new SlotTask<T>(clazz, param.copy()));
 		}
 		
 		List<Future<SlotGame>> resultList = executorService.invokeAll(taskList);
@@ -144,13 +144,13 @@ public class SlotSimulator {
 	 *
 	 */
 	@Slf4j
-	private static class SlotTask implements Callable<SlotGame> {
+	private  static class SlotTask<T extends SlotGame> implements Callable<SlotGame> { 
 		private SlotGameSettingParam param;
-		private long gameRunCount;
+		private Class<T> clazz;
 		
-		public SlotTask(SlotGameSettingParam param, long gameRunCount) {
+		public SlotTask(Class<T> clazz, SlotGameSettingParam param) {
+			this.clazz = clazz;
 			this.param = param;
-			this.gameRunCount = gameRunCount;
 		}
 		
 		@Override
@@ -161,9 +161,10 @@ public class SlotSimulator {
 			setting.initFromParam(param); 
 			setting.validate();
 			
-			SlotGame game = new SlotGame();
+			
+			T game = clazz.newInstance();
 			game.init(setting);
-			for(int i=0; i<gameRunCount; i++) {
+			for(int i=0; i<setting.getGameRunCount(); i++) {
 				game.spin();
 			}
 			

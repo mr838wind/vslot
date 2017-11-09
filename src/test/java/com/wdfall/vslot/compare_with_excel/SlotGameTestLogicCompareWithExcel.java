@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.mockito.MockitoAnnotations;
 
+import com.wdfall.vslot.SlotGameRegular;
 import com.wdfall.vslot.SlotSimulator;
 
 import lombok.extern.slf4j.Slf4j;
@@ -62,7 +63,7 @@ public abstract class SlotGameTestLogicCompareWithExcel {
 			slotSimulator.setThreadCount(THREAD_COUNT);
 			slotSimulator.setGameRunCount(SPIN_COUNT_PER_GAME); 
 			slotSimulator.setPayoutExpected(EXPECTED);
-			slotSimulator.startWithThread();
+			slotSimulator.startWithThread(SlotGameRegular.class);
 			if(EXPECTED > 0) {
 				Assert.assertTrue( slotSimulator.getDifference() < VALUE_MAX_DIFFERENCE); 
 			} else {

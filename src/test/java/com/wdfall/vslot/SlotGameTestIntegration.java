@@ -17,7 +17,7 @@ public class SlotGameTestIntegration {
 	
 	@InjectMocks
 	@Spy
-	SlotGame game;
+	SlotGameRegular game;
 	
 	/**
 	 * log4j level ---> INFO
@@ -42,7 +42,7 @@ public class SlotGameTestIntegration {
 	private void commonTest(String jsonFilePath, double payoutExpected, double maxDiff) throws Exception {
 		SlotSimulator slotSimulator = new SlotSimulator(jsonFilePath);
 		slotSimulator.setPayoutExpected(payoutExpected);
-		slotSimulator.startWithThread();
+		slotSimulator.startWithThread(SlotGameRegular.class);
 		
 		Assert.assertTrue( slotSimulator.getDifference() < maxDiff );
 	}

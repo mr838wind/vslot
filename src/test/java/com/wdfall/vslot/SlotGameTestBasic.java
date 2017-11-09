@@ -30,7 +30,7 @@ public class SlotGameTestBasic {
 	
 	@InjectMocks
 	@Spy
-	SlotGame game;
+	SlotGameRegular game;
 	
 	@Mock
 	SlotReelSymbolGenerator slotReelSymbolGenerator; 
