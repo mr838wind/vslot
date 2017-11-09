@@ -10,7 +10,6 @@ import java.util.concurrent.Future;
 
 import com.wdfall.vslot.excel.ExcelReaderSlot;
 import com.wdfall.vslot.game.SlotGame;
-import com.wdfall.vslot.game.SlotGameRegular;
 import com.wdfall.vslot.json.SlotGameSettingParam;
 import com.wdfall.vslot.utils.FileUtil;
 import com.wdfall.vslot.utils.SlotUtils;
@@ -20,19 +19,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SlotSimulator {
 	
-	/**
-	 * main
-	 */
-	public static void main(String[] args) throws Exception {
-		//String filePath = "slot_game_setting_param.json";
-		String filePathExcel = "vslot_input_main.xlsx";
-		double payoutExpected = 0.0;
-		//
-		SlotSimulator slotSimulator = new SlotSimulator(filePathExcel);
-		slotSimulator.setPayoutExpected(payoutExpected); // for test
-		slotSimulator.startWithThread(SlotGameRegular.class);
-	}
-
 	// === 필수입력:
 	private String filePath;
 	private String excelSheetName = ExcelReaderSlot.SHEET_NAME_SLOT_INPUT;

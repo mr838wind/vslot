@@ -12,7 +12,7 @@ import com.wdfall.vslot.game.SlotGameRegular;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class SlotGameTestIntegration {
+public class SlotSimulatorTestJson {
 	
 	private static final String JSON_FILE_PATH_BASIC = "slot_game_setting_param_10_basic.json";
 	private static final String JSON_FILE_PATH_PPT = "slot_game_setting_param_20_ppt.json";
@@ -32,7 +32,7 @@ public class SlotGameTestIntegration {
 
 	@Test
 	public void testIntegrationBasic() throws Exception {
-		commonTest(JSON_FILE_PATH_BASIC, 145.0805, 1);
+		commonTest(JSON_FILE_PATH_BASIC, 145.0805, 2);
 	}
 
 	@Test

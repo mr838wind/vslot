@@ -10,7 +10,7 @@ import com.wdfall.vslot.game.SlotGameRegular;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class SlotGameTestExcel {
+public class SlotSimulatorTestExcel {
 	
 	private static final String EXCEL_FILE_PATH = "vslot_input_main.xlsx";
 	
