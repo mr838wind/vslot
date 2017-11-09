@@ -9,7 +9,7 @@ import com.wdfall.vslot.pay_result.PayResultOne;
 public interface SlotGame {
 	
 	/**
-	 * 설정 초기화
+	 * 설정 초기화 
 	 */
 	public void init(SlotGameSetting setting);
 	
