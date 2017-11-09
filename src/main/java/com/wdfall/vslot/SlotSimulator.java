@@ -9,6 +9,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import com.wdfall.vslot.excel.ExcelReaderSlot;
+import com.wdfall.vslot.game.SlotGame;
+import com.wdfall.vslot.game.SlotGameRegular;
 import com.wdfall.vslot.json.SlotGameSettingParam;
 import com.wdfall.vslot.utils.FileUtil;
 import com.wdfall.vslot.utils.SlotUtils;

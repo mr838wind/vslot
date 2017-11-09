@@ -1,5 +1,6 @@
-package com.wdfall.vslot;
+package com.wdfall.vslot.game;
 
+import com.wdfall.vslot.SlotGameSetting;
 import com.wdfall.vslot.pay_result.PayResultOne;
 
 /**

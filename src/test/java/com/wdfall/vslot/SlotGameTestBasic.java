@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 
+import com.wdfall.vslot.game.SlotGameRegular;
 import com.wdfall.vslot.json.SlotGameSettingParam;
 import com.wdfall.vslot.pay_result.PayResultOne;
 import com.wdfall.vslot.random.SlotReelSymbolGenerator;

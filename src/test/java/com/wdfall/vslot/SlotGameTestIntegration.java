@@ -7,6 +7,8 @@ import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 
+import com.wdfall.vslot.game.SlotGameRegular;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

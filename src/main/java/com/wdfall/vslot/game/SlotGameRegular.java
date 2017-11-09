@@ -1,8 +1,9 @@
-package com.wdfall.vslot;
+package com.wdfall.vslot.game;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.wdfall.vslot.SlotGameSetting;
 import com.wdfall.vslot.pay_result.PayResultOne;
 import com.wdfall.vslot.payout.PayoutTableRule;
 import com.wdfall.vslot.random.SlotReelSymbolGenerator;

@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.MockitoAnnotations;
 
+import com.wdfall.vslot.game.SlotGameRegular;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
