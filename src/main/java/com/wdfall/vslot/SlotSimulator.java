@@ -3,7 +3,6 @@ package com.wdfall.vslot;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -128,44 +127,6 @@ public class SlotSimulator {
 		long endTime = System.currentTimeMillis();
 		log.info(" >>> time duration = {} ms", SlotUtils.getBigNumberFormat(endTime - startTime)); 
 		log.info(" >>> slot simulator end !!");
-	}
-	
-	
-	
-	/**
-	 * Task 
-	 * @author chhan
-	 *
-	 */
-	@Slf4j
-	private  static class SlotTask<T extends SlotGame> implements Callable<SlotGame> { 
-		private SlotGameSettingParam param;
-		private Class<T> clazz;
-		
-		public SlotTask(Class<T> clazz, SlotGameSettingParam param) {
-			this.clazz = clazz;
-			this.param = param;
-		}
-		
-		@Override
-		public SlotGame call() throws Exception {
-			log.info(" >>> SlotTask {} in Thread {} start ! ", this, Thread.currentThread().getId()); 
-			
-			SlotGameSetting setting = new SlotGameSetting();
-			setting.initFromParam(param); 
-			setting.validate();
-			
-			
-			T game = clazz.newInstance();
-			game.init(setting);
-			for(int i=0; i<setting.getGameRunCount(); i++) {
-				game.spin();
-			}
-			
-			log.info(" >>> SlotTask {} in Thread {} end ! ", this, Thread.currentThread().getId()); 
-			
-			return game;
-		}
 	}
 	
 	
