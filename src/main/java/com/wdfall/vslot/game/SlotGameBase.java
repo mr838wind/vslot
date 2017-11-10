@@ -107,7 +107,6 @@ public abstract class SlotGameBase implements SlotGame {
 	}
 	
 	
-	
 	protected void initReelShowArray(String[][] array) {
 		for(int i=0; i<array.length; i++) {
 			String[] inArray = array[i];
@@ -124,9 +123,9 @@ public abstract class SlotGameBase implements SlotGame {
 	protected void checkCurrentResult() {
 		
 		// win = scatterPay + nonScatterPay
-		checkScatterPay();
-		
 		checkNonScatterPay();
+		
+		checkScatterPay();
 		
 		log.debug(" current win : {}", currentPayResult.getCurrentPayResult());
 	}
