@@ -10,6 +10,7 @@ import java.util.concurrent.Future;
 
 import com.wdfall.vslot.excel.ExcelReaderSlot;
 import com.wdfall.vslot.game.SlotGame;
+import com.wdfall.vslot.game.SlotGameRegular;
 import com.wdfall.vslot.json.SlotGameSettingParam;
 import com.wdfall.vslot.utils.FileUtil;
 import com.wdfall.vslot.utils.SlotUtils;
@@ -18,6 +19,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class SlotSimulator {
+	
+	public static void main(String[] args) throws Exception {
+		SlotSimulator slotSimulator = new SlotSimulator("slot_game_setting_param.json");
+		slotSimulator.startWithThread(SlotGameRegular.class);
+	}
 	
 	// === 필수입력:
 	private String filePath;

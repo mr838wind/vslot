@@ -9,6 +9,7 @@ import lombok.Data;
 @Data
 public class PayResultOne {
 	
+	private long currentBet;
 	//scatter pay
 	private PayResultItem scatter;
 	//line별 pay

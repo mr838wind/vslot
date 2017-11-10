@@ -85,6 +85,7 @@ public abstract class SlotGameBase implements SlotGame {
 		// 1. init reelShowArray and others
 		initReelShowArray(reelShowArray);
 		currentPayResult = new PayResultOne();
+		currentPayResult.setCurrentBet(currentBet);
 		
 		// 2. generate current reelShowArray
 		generateCurrentReelShowArray();

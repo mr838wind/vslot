@@ -22,7 +22,7 @@ public class PayoutTableRuleScatterSymbol implements PayoutTableRuleScatter {
 	
 	@Override
 	public void calculate(final String[][] reelShowArray, PayResultOne currentPayResult ) {
-		int pay = 0;
+		long pay = 0;
 		
 		// count all scatter in show 
 		int matchCount = 0;
@@ -38,6 +38,10 @@ public class PayoutTableRuleScatterSymbol implements PayoutTableRuleScatter {
 		
 		if(countPayMap.containsKey(matchCount)) {
 			pay = countPayMap.get(matchCount);
+			
+			// debug: line이 여러개일때 scatter pay도 배로 된다.
+			pay = pay * currentPayResult.getCurrentBet();
+			
 			log.debug(" <<win scatter>> symbol = {}, count = {}, pay = {}", symbol, matchCount, pay);
 			
 			//
