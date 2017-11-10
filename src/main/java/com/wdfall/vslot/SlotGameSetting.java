@@ -8,8 +8,8 @@ import java.util.Map;
 import org.apache.commons.collections.CollectionUtils;
 
 import com.wdfall.vslot.excel.ExcelReaderSlot;
+import com.wdfall.vslot.json.PayoutTableRuleParam;
 import com.wdfall.vslot.json.SlotGameSettingParam;
-import com.wdfall.vslot.json.SlotGameSettingParam.PayoutTableRuleParam;
 import com.wdfall.vslot.payout.PayoutTableRule;
 import com.wdfall.vslot.payout.PayoutTableRuleBonusSymbolStage1;
 import com.wdfall.vslot.payout.PayoutTableRuleNormalSymbol;

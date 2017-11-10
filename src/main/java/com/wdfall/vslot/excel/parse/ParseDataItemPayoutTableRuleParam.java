@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.wdfall.vslot.excel.ExcelUtils;
+import com.wdfall.vslot.json.PayoutTableRuleParam;
 import com.wdfall.vslot.json.SlotGameSettingParam;
-import com.wdfall.vslot.json.SlotGameSettingParam.PayoutTableRuleParam;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -11,8 +11,8 @@ import java.util.regex.Pattern;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.wdfall.vslot.json.PayoutTableRuleParam;
 import com.wdfall.vslot.json.SlotGameSettingParam;
-import com.wdfall.vslot.json.SlotGameSettingParam.PayoutTableRuleParam;
 import com.wdfall.vslot.utils.FileUtil;
 import com.wdfall.vslot.utils.JsonBuilder;
 
