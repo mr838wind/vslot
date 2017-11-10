@@ -54,6 +54,7 @@ public class SlotGameSettingParam {
 		public static final String SYMBOL_TYPE_NORMAL = "N";
 		public static final String SYMBOL_TYPE_WILD = "W";
 		public static final String SYMBOL_TYPE_SCATTER = "S";
+		public static final String SYMBOL_TYPE_BONUS = "B";
 	}
 
 }

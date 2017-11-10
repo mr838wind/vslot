@@ -51,7 +51,7 @@ public class PayoutTableRuleBonusSymbolStage1 implements PayoutTableRuleScatter 
 			bonus.setName(SlotUtils.getPayResultItemName(symbol, matchCount));
 			bonus.setCount(1);
 			bonus.setPay(pay);
-			//currentPayResult.setBonus(bonus);
+			currentPayResult.setBonus(bonus);
 			
 		}
 		

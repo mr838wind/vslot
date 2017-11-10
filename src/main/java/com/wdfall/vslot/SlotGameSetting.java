@@ -11,6 +11,7 @@ import com.wdfall.vslot.excel.ExcelReaderSlot;
 import com.wdfall.vslot.json.SlotGameSettingParam;
 import com.wdfall.vslot.json.SlotGameSettingParam.PayoutTableRuleParam;
 import com.wdfall.vslot.payout.PayoutTableRule;
+import com.wdfall.vslot.payout.PayoutTableRuleBonusSymbolStage1;
 import com.wdfall.vslot.payout.PayoutTableRuleNormalSymbol;
 import com.wdfall.vslot.payout.PayoutTableRuleScatter;
 import com.wdfall.vslot.payout.PayoutTableRuleScatterSymbol;
@@ -47,6 +48,8 @@ public class SlotGameSetting {
 	private List<PayoutTableRule> payoutTableRuleList;
 	// payout scatter
 	private PayoutTableRuleScatter payoutTableRuleScatter;
+	// payout bonus
+	private PayoutTableRuleScatter payoutTableRuleBonus;
 	
 	// 사용할 symbol 
 	private List<String> normalSymbolList;
@@ -69,6 +72,10 @@ public class SlotGameSetting {
 	
 	public boolean isScatterExist() {
 		return (payoutTableRuleScatter != null);
+	}
+	
+	public boolean isBonusExist() {
+		return (payoutTableRuleBonus != null);
 	}
 	
 	
@@ -181,6 +188,8 @@ public class SlotGameSetting {
 				payoutTableRuleList.add(wildSymbolRule);
 			} else if(PayoutTableRuleParam.SYMBOL_TYPE_SCATTER.equals(ruleParam.getSymbolType())) {
 				payoutTableRuleScatter = new PayoutTableRuleScatterSymbol(ruleParam.getSymbol(), ruleParam.getRule());
+			} else if(PayoutTableRuleParam.SYMBOL_TYPE_BONUS.equals(ruleParam.getSymbolType())) {
+				payoutTableRuleBonus = new PayoutTableRuleBonusSymbolStage1(ruleParam.getSymbol(), ruleParam.getRule());
 			}
 		}
 		

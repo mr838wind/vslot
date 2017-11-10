@@ -5,10 +5,13 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * stage 1 slot game
  * -------------
- * bonus symbol: 당첨금액 *2,*4...(당첨금액 없으면?)
+ * bonus symbol:
  * free spin: 
  * nudging wild
  * -------------
+ * symbol type: normal, bonus, scatter-freespin, wild-nudging
+ * -------------
+ * 
  */
 @Slf4j
 public class SlotGameStage1 extends SlotGameBase {
@@ -17,7 +20,16 @@ public class SlotGameStage1 extends SlotGameBase {
 		
 	}
 	
-	
+	// bonus, scatter-freespin
+	@Override
+	protected void checkScatterPay() {
+		
+		if(setting.isBonusExist()) {
+			setting.getPayoutTableRuleBonus().calculate(reelShowArray, currentPayResult);
+		}
+		
+		
+	}
 	
 	
 	

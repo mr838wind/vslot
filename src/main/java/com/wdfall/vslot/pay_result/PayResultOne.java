@@ -8,10 +8,13 @@ import lombok.Data;
 
 @Data
 public class PayResultOne {
-	
+	// 현재 배팅 금액
 	private long currentBet;
 	//scatter pay
 	private PayResultItem scatter;
+	//bonus pay
+	private PayResultItem bonus;
+	
 	//line별 pay
 	private Map<Integer, PayResultItem> lines = new HashMap<>();
 
@@ -55,6 +58,11 @@ public class PayResultOne {
 		// add scatter pay
 		if(scatter != null) {
 			pay = pay + scatter.getPay(); 
+		}
+		
+		// add bonus pay
+		if(bonus != null) {
+			pay = pay + bonus.getPay(); 
 		}
 		
 		// add line별 pay
